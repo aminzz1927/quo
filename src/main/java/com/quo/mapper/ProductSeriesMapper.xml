@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 命名空间 -->
+<mapper namespace="com.quo.mapper.ProductSeriesMapper">
+	
+	
+	<select id="getAll" resultType="productSeries">
+	select psid,psname,tname,notes from productseries ps left join producttype pt on  ps.tid=pt.tid order by psid desc
+	
+	</select>
+
+    <select id="getByPsid" resultType="productSeries2">
+		select psid,psname,tid,notes from productseries  where psid = #{psid} order by psid desc
+	</select>
+
+ <update id="update" parameterType="productSeries2">
+		update productseries set psname = #{psname},tid = #{tid},notes = #{notes} where psid  = #{psid}
+			
+	</update>
+
+</mapper>

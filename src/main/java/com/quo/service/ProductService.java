@@ -8,6 +8,11 @@ import com.quo.entity.Product;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductType;
 
+/** 
+
+* @author zhoumin
+
+*/
 public interface ProductService {
 
 	List<ProductsDto> getProductList();
@@ -20,10 +25,11 @@ public interface ProductService {
 
 	List<ProductSeries> getSeriesList();
 
-	Product deleteProduct(Long pid);
+	boolean deleteProduct(Long pid);
 
-	Product deleteProducts(Long pids);
+	boolean deleteProducts(Long[] pids);
 
-	int addProduct(Product product);
+	boolean addProduct(Product product);
+
 
 }

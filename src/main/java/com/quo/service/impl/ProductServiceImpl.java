@@ -12,7 +12,11 @@ import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductType;
 import com.quo.mapper.ProductMapper;
 import com.quo.service.ProductService;
+/** 
 
+* @author zhoumin
+
+*/
 @Service("productService")
 public class ProductServiceImpl implements ProductService{
 
@@ -20,13 +24,19 @@ public class ProductServiceImpl implements ProductService{
 	private ProductMapper pMapper;
 	
 	
+	/*	@Override
+		public List<ProductsDto> getProductList() {
+			// TODO Auto-generated method stub
+			return pMapper.getProductList();
+		}*/
+
 	@Override
 	public List<ProductsDto> getProductList() {
 		// TODO Auto-generated method stub
 		return pMapper.getProductList();
+
 	}
-
-
+	
 	@Override
 	public ProductDto getProduct(Long pid) {
 		// TODO Auto-generated method stub
@@ -56,23 +66,28 @@ public class ProductServiceImpl implements ProductService{
 
 
 	@Override
-	public Product deleteProduct(Long pid) {
+	public boolean deleteProduct(Long pid) {
 		// TODO Auto-generated method stub
 		return pMapper.deleteProduct(pid);
 	}
 
 
 	@Override
-	public Product deleteProducts(Long pids) {
+	public boolean deleteProducts(Long[] pids) {
 		// TODO Auto-generated method stub
 		return pMapper.deleteProducts(pids);
 	}
 
 
 	@Override
-	public int addProduct(Product product) {
+	public boolean addProduct(Product product) {
 		// TODO Auto-generated method stub
-		return 0;
+		return pMapper.addProduct(product);
 	}
+
+
+
+
+
 
 }

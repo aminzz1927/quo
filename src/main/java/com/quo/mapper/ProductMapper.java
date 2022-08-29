@@ -2,6 +2,8 @@ package com.quo.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
@@ -11,14 +13,17 @@ import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductType;
+
 @Repository
 public interface ProductMapper {
 
 	
 	
-	  @Select("select p.pid,p.pname,pt.tname,ps.psname,p.stock,p.price from product p left join productseries ps on p.psid=ps.psid left join producttype pt\r\n"
-	  + "	on ps.tid=pt.tid order by pid asc")	 
+	@Select("select p.pid,p.pname,pt.tname,ps.psname,p.stock,p.price from product p left join productseries ps on p.psid=ps.psid left join producttype pt\r\n"
+	 + "	on ps.tid=pt.tid order by pid asc")	 
 	List<ProductsDto> getProductList();
+	
+	//List<ProductsDto> getProductList();
 
 	  @Select("select p.pid,p.pname,pt.tname,ps.psname,p.stock,p.connection,p.pInterface,p.noise,p.bass,"
 	  		+ "p.waterproof,p.mic,p.packageInfo from product p left join productseries ps on p.psid=ps.psid "
@@ -32,8 +37,10 @@ public interface ProductMapper {
 
 	List<ProductSeries> getSeriesList();
 
-	Product deleteProduct(Long pid);
+	boolean deleteProduct(Long pid);
 
-	Product deleteProducts(Long pids);
+	boolean deleteProducts(Long[] pids);
+
+	boolean addProduct(Product product);
 
 }

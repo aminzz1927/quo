@@ -5,17 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Product {
 	
 	private Long pid;
 	
 	private String pname;
 	
-	private int psid;
+	private Integer psid;
 	
-	private int stock;
+	private Integer stock;
 	
 	private String connection;
 	
@@ -27,9 +25,17 @@ public class Product {
 	
 	private String waterproof;
 	
-	private double price;
+	private String mic;
+	
+	private Double price;
 	
 	private String packageInfo;
+	
+	//private ProductSeries productSeries;
+	
+	//private ProductType productType;
+
+
 
 	
 

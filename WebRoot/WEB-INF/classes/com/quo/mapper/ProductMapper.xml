@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- namespace 命名空间 -->
 <mapper namespace="com.quo.mapper.ProductMapper">
 <resultMap id="product" type="Product">
-        <id property="pid" column="pid" javaType="Integer"/>
+        <id property="pid" column="pid" javaType="Long"/>
         <result property="pname" column="pname" javaType="String"/>
         <result property="psid" column="psid" javaType="int"/>
         <result property="stock" column="stock" javaType="int"/>
@@ -14,19 +14,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="noise" column="noise" javaType="String"/>
         <result property="bass" column="bass" javaType="String"/>
         <result property="waterproof" column="waterproof" javaType="String"/>
-        <association property="psid" column="psid" javaType="ProductSeries" >
+        <result property="price" column="price" javaType="double"/>
+        <result property="mic" column="mic" javaType="String"/>
+        <result property="packageInfo" column="packageInfo" javaType="String"/>
+        <association property="productSeries" column="psid" javaType="ProductSeries" >
             <id property="psid" column="psid" javaType="int"/>
             <result property="psname" column="psname" javaType="String"/>
         </association>
-         <association property="tid" column="tid" javaType="ProductType" >
+         <association property="productType" column="tid" javaType="ProductType" >
             <id property="tid" column="tid" javaType="int"/>
             <result property="tname" column="tname" javaType="String"/>
         </association>
     </resultMap>	
 	
- <!-- 	<select id="getProductList" resultType="productDto">
-	select p.pid,p.pname,pt.tname,ps.psname,p.price,p.stock from product p left join productseries ps on p.psid=ps.psid 
-	left join producttype pt on ps.tid=pt.tid order by pid asc
+ <!-- 	<select id="getProductList" resultType="productsDto">
+	select p.pid,p.pname,pt.tname,ps.psname,p.price,p.stock from product p left join productseries ps 
+	on p.psid=ps.psid left join producttype pt on ps.tid=pt.tid order by pid asc
 	
 	</select> 
  -->
@@ -52,9 +55,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	
-	<delete id="deleteProducts" parameterType="Long">
-		delete from role where id = #{id}
+	<delete id="deleteProduct" parameterType="Long">
+		delete from product where pid = #{pid}
 	</delete>
+	
+	<delete id="deleteProducts" parameterType="Long">
+		delete from product where pid in
+		<foreach collection="array" item="pid" index="index" open="(" separator="," close=")">
+			#{pid}
+		
+		</foreach>
+	</delete>
+	
+	<insert id="addProduct" parameterType="product">
+		insert into product values(#{pid},#{pname},#{psid},#{stock},#{connection},#{pinterface},#{noise},
+		#{bass},#{waterproof},#{mic},#{price},#{packageInfo}) 
+	
+	</insert>
 
 
 </mapper>

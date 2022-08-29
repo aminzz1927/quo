@@ -11,7 +11,7 @@ public class ProductsDto {
 	
 	private int stock;
 	
-	private int psid;
+//	private int psid;
 	
 	private String tname;
 	 

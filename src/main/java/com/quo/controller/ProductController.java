@@ -1,5 +1,7 @@
  package com.quo.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +25,13 @@ import com.quo.service.ProductService;
 import com.quo.utils.Result;
 import com.quo.utils.ResultCode;
 
+/** 
+
+* @author zhoumin
+
+*/
 @Controller("productController")
+@RequestMapping(value="/api")
 public class ProductController {
 
 	@Autowired
@@ -32,7 +40,7 @@ public class ProductController {
 	
 	     //获取所有产品信息		
 			
-			  @RequestMapping(value="/api/product",method=RequestMethod.GET)
+			  @RequestMapping(value="/product",method=RequestMethod.GET)
 			  @ResponseBody 
 			  public Result getProductList(){ 
 				  
@@ -45,7 +53,7 @@ public class ProductController {
 			  }
 		  
 		  //获取单个产品信息
-		  @RequestMapping(value="/api/product/{pid}",method=RequestMethod.GET)		  
+		  @RequestMapping(value="/product/{pid}",method=RequestMethod.GET)		  
 		  @ResponseBody 
 		  public Result getProduct(@PathVariable Long pid){ 
 			  ProductDto product = pService.getProduct(pid);
@@ -56,7 +64,7 @@ public class ProductController {
 		  }
 		  
 		  //更新特定产品信息
-		  @RequestMapping(value="/api/product/{pid}",method=RequestMethod.PUT)
+		  @RequestMapping(value="/product/{pid}",method=RequestMethod.PUT)
 		  @ResponseBody
 		  public Result updateProduct(@PathVariable(value="pid") Long pid,@RequestBody Product product){ 
 			  product.setPid(pid);		
@@ -66,7 +74,7 @@ public class ProductController {
 		  }		  		  
 		  
 		  //获取产品类型列表
-		  @RequestMapping(value="/api/product-type-list",method=RequestMethod.GET)		  
+		  @RequestMapping(value="/product-type-list",method=RequestMethod.GET)		  
 		  @ResponseBody 
 		  public Result getTypeList(){ 
 			  List<ProductType> typeList = pService.getTypeList();
@@ -78,60 +86,41 @@ public class ProductController {
 		  	  
 		  
 		  //获取产品系列列表
-		  @RequestMapping(value="/api/product-series-list",method=RequestMethod.GET)		  
+		  @RequestMapping(value="/product-series-list",method=RequestMethod.GET)		  
 		  @ResponseBody 
-		  public List<ProductSeries> getSeriesList(){ 
+		  public Result getSeriesList(){ 
 			  List<ProductSeries> seriesList = pService.getSeriesList();
-			  return seriesList;
+			  Result result=new Result(ResultCode.SUCCESS);
+			  result.setData(seriesList);
+			  return result;
 		  
 		  }
+		  
+		  
 		  
 		  //删除单个产品
-		  @RequestMapping(value="/api/product/{pid}",method=RequestMethod.POST)		  
-		  @ResponseBody 
-		  public Product deleteProduct(Long pid){ 
-			  Product product = pService.deleteProduct(pid);
-			  return product;
+		  @RequestMapping(value="/product/{pid}",method=RequestMethod.DELETE)
+		  @ResponseBody
+		  public Result deleteProduct(@PathVariable(value="pid") Long pid){ 
+			      pService.deleteProduct(pid);
+			  return new Result(ResultCode.SUCCESS);
 		  
 		  }
 		  
-		  
 		  //删除多个产品
-		  @RequestMapping(value="/api/product-del",method=RequestMethod.POST)		  
+		  @RequestMapping(value="/product-del",method=RequestMethod.POST)		  
 		  @ResponseBody 
-		  public Product deleteProducts(Long pids){ 
-			  Product product = pService.deleteProducts(pids);
-			  return product;
+		  public Result deleteProducts(Long[] pids){ 
+			  
+			  		System.out.println("AAAAAAA"+pids);
+				  pService.deleteProducts(pids);
+				  
+			  
+			  return new Result(ResultCode.SUCCESS);
 		  
 		  }
 	 
 		  
-		  //添加单个产品
-		  @RequestMapping(value="/api/{pid}",method=RequestMethod.POST)		  
-		  @ResponseBody 
-		  public Map<String, String> addProduct(Product product){ 
-			  Map<String, String> ret = new HashMap<String, String>();
-			  if(product == null){
-					ret.put("type", "error");
-					ret.put("msg", "请填写正确的产品信息！");
-					return ret;
-				}
-				if(StringUtils.isEmpty(product.getPname())){
-					ret.put("type", "error");
-					ret.put("msg", "请填写产品名称！");
-					return ret;
-				}
-				if(pService.addProduct(product) <= 0){
-					ret.put("type", "error");
-					ret.put("msg","产品添加失败，请联系管理员！");
-					return ret;
-				}
-				ret.put("type", "success");
-				ret.put("msg", "产品添加成功！");
-				return ret;
-			  
-			  
-		  
-		  }
+		
 
 }

@@ -1,4 +1,9 @@
 package com.quo.entity;
+/**
+ * 
+ * @author 韩宛廷
+ *
+ */
 
 public class ProductSeries {
   private  int psid;

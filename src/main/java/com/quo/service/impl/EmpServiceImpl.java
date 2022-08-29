@@ -2,6 +2,7 @@ package com.quo.service.impl;
 
 import java.util.List;
 
+
 import com.quo.entity.Emp;
 import com.quo.exceptions.LoginException;
 import com.quo.mapper.EmpMapper;
@@ -10,6 +11,11 @@ import com.quo.service.EmpService;
 import com.quo.utils.MD5;
 
 import com.quo.utils.SqlSessionUtil;
+/**
+ * 
+ * @author 韩宛廷
+ *
+ */
 
 public class EmpServiceImpl implements EmpService {
 

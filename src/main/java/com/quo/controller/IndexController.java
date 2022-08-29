@@ -1,6 +1,7 @@
 package com.quo.controller;
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -13,7 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * 
+ * @author 韩宛廷
+ *
+ */
 @WebServlet({"/login", "/resetpw", "/home", "/system/*","/product/list","/product/listse"})
 public class IndexController extends HttpServlet {
 	

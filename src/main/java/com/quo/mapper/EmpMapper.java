@@ -3,13 +3,18 @@ package com.quo.mapper;
 import java.util.List;
 
 
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.quo.entity.Emp;
 
-
+/**
+ * 
+ * @author 韩宛廷
+ *
+ */
 
 public interface EmpMapper {
 

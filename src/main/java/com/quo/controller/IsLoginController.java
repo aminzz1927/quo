@@ -21,7 +21,11 @@ import com.quo.utils.Const;
 import com.quo.utils.OutJson;
 import com.quo.utils.TransactionHandler;
 
-
+/**
+ * 
+ * @author 韩宛廷
+ *
+ */
 @WebServlet("/api/islogin")
 public class IsLoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -29,6 +29,11 @@ import com.quo.utils.MD5;
 import com.quo.utils.OutJson;
 import com.quo.utils.TransactionHandler;
 
+/**
+ * 
+ * @author 韩宛廷
+ *
+ */
 public class LoginController extends HttpServlet {
 
 	@Override

@@ -14,10 +14,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getByPsid" resultType="productSeries2">
 		select psid,psname,tid,notes from productseries  where psid = #{psid} order by psid desc
 	</select>
+	
+	
+	<select id="getProductByPsid" resultType="product">
+		select * from product  where psid = #{psid} 
+	</select>
 
+	
  <update id="update" parameterType="productSeries2">
 		update productseries set psname = #{psname},tid = #{tid},notes = #{notes} where psid  = #{psid}
 			
 	</update>
+	
+	<delete id="deleteById" parameterType="int">
+		delete  from productseries where psid = #{psid}
+	</delete>
+	
+		<delete id="deleteByIds">
+		delete from productseries where psid in
+		<foreach collection="array" separator="," item="psid" open="(" close=")">
+		#{psid}
+		</foreach>
+	</delete>
+	
+	<insert id="save" parameterType="productSeries2">
+		insert into productseries
+			(psid,psname,tid,notes)
+		values
+			(#{psid},#{psname},#{tid},#{notes})
+	</insert>
 
 </mapper>

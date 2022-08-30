@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.quo.dto.AuthorityDto;
 import com.quo.entity.Authority;
 import com.quo.mapper.AuthorityMapper;
 import com.quo.service.AuthorityService;
@@ -17,7 +17,7 @@ public class AuthorityServiceImpl implements AuthorityService{
 	private AuthorityMapper authorityMapper;
 
 	@Override
-	public List<Authority> findListByRoleId(Integer rid) {
+	public List<AuthorityDto> findListByRoleId(Integer rid) {
 		// TODO Auto-generated method stub
 		return authorityMapper.findListByRoleId(rid);
 	}

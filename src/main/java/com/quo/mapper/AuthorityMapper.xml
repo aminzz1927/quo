@@ -4,13 +4,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace 命名空间 -->
 <mapper namespace="com.quo.mapper.AuthorityMapper">
+<resultMap id="authority" type="Authority">
+        <id property="rmid" column="rmid" javaType="Integer"/>
+        <result property="rid" column="rid" javaType="Integer"/>
+        <result property="mid" column="mid" javaType="Integer"/>
+        <association property="menu" column="mid" javaType="Menu" >
+            <result property="mname" column="mname" javaType="String"/>
+        </association>
 
+    </resultMap>	
 
 	<!-- 权限信息搜索查询 -->
-	<select id="findListByRoleId" parameterType="Integer" resultType="Authority">
+<!-- 	<select id="findListByRoleId" parameterType="Integer" resultType="Authority">
 		select * from authority where rid = #{rid} 
-	</select>
+	</select> -->
 	
+	<!-- <select id="findListByRoleId" parameterType="Integer" resultMap="Authority">
+		select mname from authority a left join menu m on a.mid=m.mid where rid = #{rid} 
+	</select> -->
 
 
 </mapper>

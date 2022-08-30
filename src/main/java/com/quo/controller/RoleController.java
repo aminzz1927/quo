@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.quo.dto.AuthorityDto;
 import com.quo.dto.ProductDto;
 import com.quo.entity.Authority;
 import com.quo.service.AuthorityService;
@@ -35,7 +36,7 @@ public class RoleController {
 	@ResponseBody
 	public Result getRoleAuthority(Integer rid){
 		
-		  List<Authority> authority = authorityService.findListByRoleId(rid);
+		  List<AuthorityDto> authority = authorityService.findListByRoleId(rid);
 		  System.out.println("AAAAAAAAAA"+authority);
 		  Result result=new Result(ResultCode.SUCCESS);
 		  result.setData(authority);

@@ -113,7 +113,7 @@ public class ProductController {
 		  @ResponseBody 
 		  public Result deleteProducts(Long[] pids){ 
 			  
-			  		System.out.println("AAAAAAA"+pids);
+			  		
 				  pService.deleteProducts(pids);
 				  
 			  
@@ -121,6 +121,7 @@ public class ProductController {
 		  
 		  }
 	 
+<<<<<<< HEAD
 
 		    @RequestMapping(value="/product",method = RequestMethod.POST)
 		    public Result saves(@RequestBody List<Product> productList )  {
@@ -140,6 +141,21 @@ public class ProductController {
 		    	pService.saves(productList);
 		        return new Result(ResultCode.SUCCESS);
 		    }
+=======
+		  //添加单个产品
+		  @RequestMapping(value="/product/add",method=RequestMethod.POST)
+		  @ResponseBody
+		  public Result addProduct(@RequestBody Product product){ 
+
+			  	pService.addProduct(product);
+			
+				return new Result(ResultCode.SUCCESS);
+			  
+			  
+		  
+		  }
+		  
+>>>>>>> branch 'master' of git@github.com:aminzz1927/quo.git
 		
 
 }

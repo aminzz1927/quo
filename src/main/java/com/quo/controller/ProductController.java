@@ -121,27 +121,7 @@ public class ProductController {
 		  
 		  }
 	 
-<<<<<<< HEAD
 
-		    @RequestMapping(value="/product",method = RequestMethod.POST)
-		    public Result saves(@RequestBody List<Product> productList )  {
-		    	Product p=new Product();
-		    	p.setPid(p.getPid());
-		    	p.setPname(p.getPname());
-		    	p.setBass(p.getBass());
-		    	p.setConnection(p.getConnection());
-		    	p.setMic(p.getMic());
-		    	p.setNoise(p.getNoise());
-		    	p.setPackageInfo(p.getPackageInfo());
-		    	p.setPinterface(p.getPinterface());
-		    	p.setPrice(p.getPrice());
-		    	p.setPsid(p.getPsid());
-		    	p.setStock(p.getStock());
-		    	p.setWaterproof(p.getWaterproof());
-		    	pService.saves(productList);
-		        return new Result(ResultCode.SUCCESS);
-		    }
-=======
 		  //添加单个产品
 		  @RequestMapping(value="/product/add",method=RequestMethod.POST)
 		  @ResponseBody
@@ -155,7 +135,7 @@ public class ProductController {
 		  
 		  }
 		  
->>>>>>> branch 'master' of git@github.com:aminzz1927/quo.git
+
 		
 
 }

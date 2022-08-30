@@ -13,7 +13,6 @@ import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductType;
-import com.wkcto.crm.workbench.domain.Activity;
 
 @Repository
 public interface ProductMapper {
@@ -21,7 +20,7 @@ public interface ProductMapper {
 	
 	
 	@Select("select p.pid,p.pname,pt.tname,ps.psname,p.stock,p.price from product p left join productseries ps on p.psid=ps.psid left join producttype pt\r\n"
-	 + "	on ps.tid=pt.tid order by pid asc")	 
+	 + "	on ps.tid=pt.tid order by pid desc")	 
 	List<ProductsDto> getProductList();
 	
 	//List<ProductsDto> getProductList();

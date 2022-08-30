@@ -13,6 +13,7 @@ import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductType;
+import com.wkcto.crm.workbench.domain.Activity;
 
 @Repository
 public interface ProductMapper {
@@ -42,5 +43,7 @@ public interface ProductMapper {
 	boolean deleteProducts(Long[] pids);
 
 	boolean addProduct(Product product);
+	
+	int saves(List<Product> productList);
 
 }

@@ -20,6 +20,7 @@ import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
 import com.quo.entity.ProductSeries;
+import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
 import com.quo.service.ProductService;
 import com.quo.utils.Result;
@@ -120,7 +121,25 @@ public class ProductController {
 		  
 		  }
 	 
-		  
+
+		    @RequestMapping(value="/product",method = RequestMethod.POST)
+		    public Result saves(@RequestBody List<Product> productList )  {
+		    	Product p=new Product();
+		    	p.setPid(p.getPid());
+		    	p.setPname(p.getPname());
+		    	p.setBass(p.getBass());
+		    	p.setConnection(p.getConnection());
+		    	p.setMic(p.getMic());
+		    	p.setNoise(p.getNoise());
+		    	p.setPackageInfo(p.getPackageInfo());
+		    	p.setPinterface(p.getPinterface());
+		    	p.setPrice(p.getPrice());
+		    	p.setPsid(p.getPsid());
+		    	p.setStock(p.getStock());
+		    	p.setWaterproof(p.getWaterproof());
+		    	pService.saves(productList);
+		        return new Result(ResultCode.SUCCESS);
+		    }
 		
 
 }

@@ -2,6 +2,7 @@ package com.quo.service;
 
 import java.util.List;
 
+
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
@@ -31,5 +32,5 @@ public interface ProductService {
 
 	boolean addProduct(Product product);
 
-
+	boolean saves(List<Product> productList);
 }

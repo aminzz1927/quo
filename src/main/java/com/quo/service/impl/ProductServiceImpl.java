@@ -2,6 +2,7 @@ package com.quo.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -85,9 +86,19 @@ public class ProductServiceImpl implements ProductService{
 		return pMapper.addProduct(product);
 	}
 
+	
+	/**
+	 * author:韩宛廷
+	 */
+	@Override
+	public boolean saves(List<Product> productList) {
+		return 	pMapper.saves(productList)==productList.size();
+			
+		}
+	}
 
 
 
 
 
-}
+

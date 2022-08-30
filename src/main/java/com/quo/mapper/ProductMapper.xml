@@ -72,6 +72,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{bass},#{waterproof},#{mic},#{price},#{packageInfo}) 
 	
 	</insert>
+	
+	
+	<insert id="saves" parameterType="product">
+		insert into product 
+			(pid,pname,psid,stock,connection,pinterface,noise,
+		bass,waterproof,mic,price,packageInfo)
+		values
+			<foreach collection="list" item="a" separator=",">
+			(#{a.pid},#{a.pname},#{a.psid},#{a.stock},#{a.connection},#{a.pinterface},#{a.noise},
+		#{a.bass},#{a.waterproof},#{a.mic},#{a.price},#{a.packageInfo})
+			</foreach>
+	</insert>
 
 
 </mapper>

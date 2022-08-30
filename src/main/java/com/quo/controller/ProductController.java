@@ -112,7 +112,7 @@ public class ProductController {
 		  @ResponseBody 
 		  public Result deleteProducts(Long[] pids){ 
 			  
-			  		System.out.println("AAAAAAA"+pids);
+			  		
 				  pService.deleteProducts(pids);
 				  
 			  
@@ -120,6 +120,18 @@ public class ProductController {
 		  
 		  }
 	 
+		  //添加单个产品
+		  @RequestMapping(value="/product/add",method=RequestMethod.POST)
+		  @ResponseBody
+		  public Result addProduct(@RequestBody Product product){ 
+
+			  	pService.addProduct(product);
+			
+				return new Result(ResultCode.SUCCESS);
+			  
+			  
+		  
+		  }
 		  
 		
 

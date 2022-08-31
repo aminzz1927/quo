@@ -111,7 +111,7 @@ public class ProductController {
 		  //删除多个产品
 		  @RequestMapping(value="/product-del",method=RequestMethod.POST)		  
 		  @ResponseBody 
-		  public Result deleteProducts(Long[] pids){ 
+		  public Result deleteProducts(@RequestBody Long[] pids){ 
 			  
 			  		
 				  pService.deleteProducts(pids);

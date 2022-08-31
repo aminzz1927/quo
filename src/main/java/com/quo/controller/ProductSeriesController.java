@@ -89,7 +89,7 @@ public class ProductSeriesController {
 		return result;
 	}
 	 
-	 @RequestMapping(value="/product-series-del",method = RequestMethod.DELETE)
+	 @RequestMapping(value="/product-series-del",method = RequestMethod.POST)
 	    public Result seriesDelAll(@RequestBody  int[] psids) throws CommonException{
 	
 			psService.seriesDelAll(psids);

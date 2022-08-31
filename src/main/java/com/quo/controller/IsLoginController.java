@@ -32,21 +32,23 @@ public class IsLoginController extends HttpServlet {
 	
 		// 获取浏览器提交的Cookie（Cookie可能有，也可能没有）
 				Cookie[] cookies = request.getCookies(); // 请求没有Cookie的时候返回的不是一个长度为0的数组，而是null
-				Integer eno = null;
+				String enostr = "0";
+				int eno = 0;
 				String pwd = null;
 				if(cookies != null){
 					for(Cookie cookie : cookies){
 						if("a".equals(cookie.getName())){
-							eno = cookie.getValue();
+							enostr = cookie.getValue();
 						} else if ("b".equals(cookie.getName())){
 							pwd = cookie.getValue();
 						}
 					}
 				}
+				eno = Integer.valueOf(enostr);
 				Map<String,Object> jsonMap = new HashMap<>();
 				// 验证账号和密码是否仍然有效
 				// 验证的前提是：账号和密码确实从Cookie中已经获取到了。
-				if (eno != null && pwd != null){
+				if (eno != 0 && pwd != null){
 					try {
 						EmpService empService = (EmpService)new TransactionHandler(new EmpServiceImpl()).getProxy();
 						Emp emp = empService.login(eno, pwd);

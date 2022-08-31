@@ -29,13 +29,4 @@ public class RoleController {
 		   return result;
 		}
 		
-		@RequestMapping(value="/user/:id",method = RequestMethod.GET)
-	    public Result findByEno(@PathVariable(value="psid") int psid) {
-	       
-	       ProductSeries2 productseries= psService.getByPsid(psid);
-	        Result result = new Result(ResultCode.SUCCESS);
-	       result.setData(productseries);
-	       return result;
-		
-	    }
 }

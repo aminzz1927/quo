@@ -17,9 +17,23 @@ public class AuthorityServiceImpl implements AuthorityService{
 	private AuthorityMapper authorityMapper;
 
 	@Override
-	public List<AuthorityDto> findListByRoleId(Integer rid) {
+	public List<Integer> findListByRoleId(Integer rid) {
 		// TODO Auto-generated method stub
 		return authorityMapper.findListByRoleId(rid);
+	}
+
+	@Override
+	public void deleteByRoleId(Integer rid) {
+
+		authorityMapper.deleteByRoleId(rid);
+		
+		
+	}
+
+	@Override
+	public boolean addAuthority(Authority authority) {
+		// TODO Auto-generated method stub
+		return authorityMapper.addAuthority(authority);
 	}
 
 }

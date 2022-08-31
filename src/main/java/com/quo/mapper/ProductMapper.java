@@ -25,7 +25,7 @@ public interface ProductMapper {
 	
 	//List<ProductsDto> getProductList();
 
-	  @Select("select p.pid,p.pname,pt.tname,ps.psname,p.stock,p.connection,p.pInterface,p.noise,p.bass,"
+	  @Select("select p.pid,p.pname,pt.tname,ps.psname,p.price,p.stock,p.connection,p.pInterface,p.noise,p.bass,"
 	  		+ "p.waterproof,p.mic,p.packageInfo from product p left join productseries ps on p.psid=ps.psid "
 	  		+ "left join producttype pt on ps.tid=pt.tid where pid=#{pid} ")
 	ProductDto getProduct(Long pid);

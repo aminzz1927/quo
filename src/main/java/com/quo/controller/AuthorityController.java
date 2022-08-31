@@ -4,6 +4,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,11 +48,11 @@ public class AuthorityController {
 	
 
 	//获取某个角色的所有权限
-	@RequestMapping(value="/get_role_authority",method=RequestMethod.GET)
+	@RequestMapping(value="/authority/{rid}",method=RequestMethod.GET)
 	@ResponseBody
-	public Result getRoleAuthority(Integer rid){
+	public Result getRoleAuthority(@PathVariable Integer rid){
 		
-		  List<AuthorityDto> authority = authorityService.findListByRoleId(rid);
+		  List<Integer> authority = authorityService.findListByRoleId(rid);
 		  System.out.println("AAAAAAAAAA"+authority);
 		  Result result=new Result(ResultCode.SUCCESS);
 		  result.setData(authority);
@@ -58,10 +60,30 @@ public class AuthorityController {
 		return result;
 		
 	}
-	
-	
+		
+
+	//更新权限
+		@RequestMapping(value="/authority/{rid}",method=RequestMethod.PUT)
+		@ResponseBody
+		public Result updateAuthority(@PathVariable Integer rid,
+									  @RequestBody Integer[] mids){
+			
+			authorityService.deleteByRoleId(rid);
+			  for(Integer mid:mids) {
+			   Authority authority = new Authority();
+			   authority.setRid(rid);
+			   authority.setMid(mid);
+			   authorityService.addAuthority(authority);
+			  }
+
+			return new Result(ResultCode.SUCCESS);
+			
+		}
 
 	
 	
-	
+
 }
+	
+	
+

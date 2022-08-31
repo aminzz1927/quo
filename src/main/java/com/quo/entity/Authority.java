@@ -7,9 +7,9 @@ public class Authority {
 		
 	private Long rmid;
 	
-	private Long rid;
+	private Integer rid;
 	
-	private Long mid;
+	private Integer mid;
 	
 	private String mname;
 

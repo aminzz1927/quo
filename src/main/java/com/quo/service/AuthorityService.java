@@ -11,7 +11,11 @@ import com.quo.entity.Authority;
 @Service
 public interface AuthorityService {
 
-	public List<AuthorityDto> findListByRoleId(Integer rid);
+	public List<Integer> findListByRoleId(Integer rid);
+
+	public void deleteByRoleId(Integer rid);
+
+	public boolean addAuthority(Authority authority);
 
 	
 }

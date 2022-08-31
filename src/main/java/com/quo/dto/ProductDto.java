@@ -9,13 +9,13 @@ public class ProductDto {
 	
 	private String pname;
 	
-	private int stock;
-	
-	private int psid;
-	
 	private String tname;
 	 
 	private String psname;
+	
+	private Double price;
+	
+	private int stock;
 	
 	private String connection;
 	

@@ -22,6 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- <select id="findListByRoleId" parameterType="Integer" resultMap="Authority">
 		select mname from authority a left join menu m on a.mid=m.mid where rid = #{rid} 
 	</select> -->
+	
+	<!-- <select id="findListByRoleId" parameterType="Integer">
+		select mid from authority where rid = #{rid} 
+	</select> -->
 
 
 </mapper>

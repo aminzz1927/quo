@@ -13,7 +13,7 @@ import com.quo.exceptions.LoginException;
  */
 public interface EmpService {
 
-	Emp login(String eno, String pwd) throws LoginException;
+	Emp login(int eno, String pwd) throws LoginException;
 
 	
 

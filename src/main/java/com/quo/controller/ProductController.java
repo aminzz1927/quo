@@ -120,28 +120,31 @@ public class ProductController {
 			  return new Result(ResultCode.SUCCESS);
 		  
 		  }
-	 
-<<<<<<< HEAD
-
-		    @RequestMapping(value="/product",method = RequestMethod.POST)
+		  /**
+			  * 添加多个产品
+			  * author：韩宛廷
+			  * @param productList
+			  * @return
+			  */
+		    @RequestMapping(value="/products",method = RequestMethod.POST)
+		    @ResponseBody
 		    public Result saves(@RequestBody List<Product> productList )  {
-		    	Product p=new Product();
-		    	p.setPid(p.getPid());
-		    	p.setPname(p.getPname());
-		    	p.setBass(p.getBass());
-		    	p.setConnection(p.getConnection());
-		    	p.setMic(p.getMic());
-		    	p.setNoise(p.getNoise());
-		    	p.setPackageInfo(p.getPackageInfo());
-		    	p.setPinterface(p.getPinterface());
-		    	p.setPrice(p.getPrice());
-		    	p.setPsid(p.getPsid());
-		    	p.setStock(p.getStock());
-		    	p.setWaterproof(p.getWaterproof());
+		    	
+				/*
+				 * Product p=new Product();
+				 * 
+				 * p.setPname(p.getPname()); p.setPsid(p.getPsid()); p.setStock(p.getStock());
+				 * p.setConnection(p.getConnection()); p.setPinterface(p.getPinterface());
+				 * p.setNoise(p.getNoise()); p.setBass(p.getBass());
+				 * p.setWaterproof(p.getWaterproof()); p.setMic(p.getMic());
+				 * p.setPrice(p.getPrice()); p.setPackageInfo(p.getPackageInfo());
+				 * productList.add(p);
+				 */
+		    	System.out.println(productList);
 		    	pService.saves(productList);
 		        return new Result(ResultCode.SUCCESS);
 		    }
-=======
+
 		  //添加单个产品
 		  @RequestMapping(value="/product/add",method=RequestMethod.POST)
 		  @ResponseBody
@@ -155,7 +158,6 @@ public class ProductController {
 		  
 		  }
 		  
->>>>>>> branch 'master' of git@github.com:aminzz1927/quo.git
 		
 
 }

@@ -1,13 +1,30 @@
 package com.quo.entity;
 
 public class Emp {
-	private String eno;
+	private int eno;
 	private String ename;
 	private String pwd;
 	private int dno;
 	private int rid;
-	private String post;
 	
+	public Emp(int eno, String ename, String pwd, int dno, int rid, String tel, String email) {
+		super();
+		this.eno = eno;
+		this.ename = ename;
+		this.pwd = pwd;
+		this.dno = dno;
+		this.rid = rid;
+		this.tel = tel;
+		this.email = email;
+	}
+	@Override
+	public String toString() {
+		return "Emp [eno=" + eno + ", ename=" + ename + ", pwd=" + pwd + ", dno=" + dno + ", rid=" + rid + ", tel="
+				+ tel + ", email=" + email + "]";
+	}
+
+
+
 	private String tel;
 	private String email;
 	
@@ -19,22 +36,14 @@ public class Emp {
 	}
 
 	
-	public Emp(String eno, String ename, String pwd, int dno, int rid, String post, String tel, String email) {
-		super();
+	
+	public int getEno() {
+		return eno;
+	}
+	public void setEno(int eno) {
 		this.eno = eno;
-		this.ename = ename;
-		this.pwd = pwd;
-		this.dno = dno;
-		this.rid = rid;
-		this.post = post;
-		this.tel = tel;
-		this.email = email;
 	}
-	@Override
-	public String toString() {
-		return "Emp [eno=" + eno + ", ename=" + ename + ", pwd=" + pwd + ", dno=" + dno + ", rid=" + rid + ", post="
-				+ post + ", tel=" + tel + ", email=" + email + "]";
-	}
+	
 	public String getEname() {
 		return ename;
 	}
@@ -53,12 +62,7 @@ public class Emp {
 	public void setDno(int dno) {
 		this.dno = dno;
 	}
-	public String getPost() {
-		return post;
-	}
-	public void setPost(String post) {
-		this.post = post;
-	}
+	
 	public String getTel() {
 		return tel;
 	}
@@ -73,15 +77,7 @@ public class Emp {
 	}
 
 	
-	
-	
-	
-	public String getEno() {
-		return eno;
-	}
-	public void setEno(String eno) {
-		this.eno = eno;
-	}
+
 	public Emp() {
 		super();
 	}

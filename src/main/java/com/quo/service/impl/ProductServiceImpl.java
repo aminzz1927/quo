@@ -92,6 +92,7 @@ public class ProductServiceImpl implements ProductService{
 	 */
 	@Override
 	public boolean saves(List<Product> productList) {
+		
 		return 	pMapper.saves(productList)==productList.size();
 			
 		}

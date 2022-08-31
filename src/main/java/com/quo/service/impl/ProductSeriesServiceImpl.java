@@ -94,6 +94,7 @@ public class ProductSeriesServiceImpl implements ProductSeriesService{
 	@Override
 	public boolean save(ProductSeries2 ps2) {
 		
+		
 		return 	psMapper.save(ps2)==1;
 	
 	}

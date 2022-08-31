@@ -2,6 +2,7 @@ package com.quo.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 
 import com.quo.entity.Emp;
 import com.quo.exceptions.LoginException;
@@ -23,7 +24,7 @@ public class EmpServiceImpl implements EmpService {
 	
 
 	@Override
-	public Emp login(String eno, String pwd) throws LoginException {
+	public Emp login(int eno, String pwd) throws LoginException {
 		// 用户名和密码是否正确
 		Emp emp = empDao.getByEnoAndPwd(eno, pwd);
 		if(emp == null){

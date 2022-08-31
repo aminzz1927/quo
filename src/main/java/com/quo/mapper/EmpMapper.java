@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
 import com.quo.entity.Emp;
 
@@ -15,7 +16,7 @@ import com.quo.entity.Emp;
  * @author 韩宛廷
  *
  */
-
+@Repository
 public interface EmpMapper {
 
 	

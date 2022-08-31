@@ -99,10 +99,10 @@ public class ProductSeriesController {
 	 
 	    @RequestMapping(value="/product-series",method = RequestMethod.POST)
 	    public Result save(@RequestBody ProductSeries2 productseries )  {
-	    	ProductSeries2 ps2=new ProductSeries2();
-	    	ps2.setPsname(ps2.getPsname());
-	    	ps2.setTid(ps2.getTid());
-	    	ps2.setNotes(ps2.getNotes());
+			/*
+			 * ProductSeries2 ps2=new ProductSeries2(); ps2.setPsname(ps2.getPsname());
+			 * ps2.setTid(ps2.getTid()); ps2.setNotes(ps2.getNotes());
+			 */
 	    	psService.save(productseries);
 	        return new Result(ResultCode.SUCCESS);
 	    }

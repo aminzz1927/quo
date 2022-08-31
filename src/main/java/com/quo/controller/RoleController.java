@@ -3,10 +3,12 @@ package com.quo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quo.entity.ProductSeries2;
 import com.quo.entity.Role;
 import com.quo.service.RoleService;
 import com.quo.utils.Result;
@@ -26,4 +28,14 @@ public class RoleController {
 		result.setData(rlist);
 		   return result;
 		}
+		
+		@RequestMapping(value="/user/:id",method = RequestMethod.GET)
+	    public Result findByEno(@PathVariable(value="psid") int psid) {
+	       
+	       ProductSeries2 productseries= psService.getByPsid(psid);
+	        Result result = new Result(ResultCode.SUCCESS);
+	       result.setData(productseries);
+	       return result;
+		
+	    }
 }

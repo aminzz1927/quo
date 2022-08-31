@@ -11,6 +11,7 @@
 			(#{ename},#{pwd},#{dno},#{rid},#{tel},#{email})
 	</insert>
 	
+	
 </mapper>
 
 

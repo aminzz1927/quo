@@ -9,16 +9,13 @@ public class ProductsDto {
 	
 	private String pname;
 	
-	private int stock;
-	
-//	private int psid;
-	
 	private String tname;
 	 
 	private String psname;
-	
+		
 	private double price;
 
+	private int stock;
 
 	
 

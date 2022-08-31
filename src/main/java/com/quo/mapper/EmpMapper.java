@@ -21,7 +21,7 @@ public interface EmpMapper {
 
 	
     @Select("select * from emp where eno = #{arg0} and pwd = #{arg1}")
-	Emp getByEnoAndPwd(String eno, String pwd);
+	Emp getByEnoAndPwd(int eno, String pwd);
 
 
 	@Update("update emp set pwd=#{pwd} where eno=#{eno}")

@@ -20,7 +20,7 @@ public interface ProductMapper {
 	
 	
 	@Select("select p.pid,p.pname,pt.tname,ps.psname,p.stock,p.price from product p left join productseries ps on p.psid=ps.psid left join producttype pt\r\n"
-	 + "	on ps.tid=pt.tid order by pid asc")	 
+	 + "	on ps.tid=pt.tid order by pid desc")	 
 	List<ProductsDto> getProductList();
 	
 	//List<ProductsDto> getProductList();

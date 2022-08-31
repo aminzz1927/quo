@@ -120,6 +120,7 @@ public class ProductController {
 			  return new Result(ResultCode.SUCCESS);
 		  
 		  }
+
 		  /**
 			  * 添加多个产品
 			  * author：韩宛廷
@@ -145,6 +146,7 @@ public class ProductController {
 		        return new Result(ResultCode.SUCCESS);
 		    }
 
+
 		  //添加单个产品
 		  @RequestMapping(value="/product/add",method=RequestMethod.POST)
 		  @ResponseBody
@@ -158,6 +160,7 @@ public class ProductController {
 		  
 		  }
 		  
+
 		
 
 }

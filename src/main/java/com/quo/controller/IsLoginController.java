@@ -32,7 +32,7 @@ public class IsLoginController extends HttpServlet {
 	
 		// 获取浏览器提交的Cookie（Cookie可能有，也可能没有）
 				Cookie[] cookies = request.getCookies(); // 请求没有Cookie的时候返回的不是一个长度为0的数组，而是null
-				String eno = null;
+				Integer eno = null;
 				String pwd = null;
 				if(cookies != null){
 					for(Cookie cookie : cookies){

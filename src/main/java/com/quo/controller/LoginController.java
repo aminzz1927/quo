@@ -44,7 +44,7 @@ public class LoginController extends HttpServlet {
 		JSONObject joj = new JSONObject(jojStr);          
 		//JsonUtil.toJson(request.getReader());
 		System.out.println(joj);
-		String eno = joj.getString("eno");
+		int eno = joj.getInt("eno");
 		String pwd = joj.getString("pwd");
 		pwd =MD5.get(pwd);
 		System.out.println(pwd);
@@ -62,6 +62,7 @@ public class LoginController extends HttpServlet {
 			if ("1".equals(flag)) {
 				String cookie1 = String.format("a=%s; max-age=864000; Path=%s; HttpOnly; Secure; SameSite=Lax;", eno,
 						request.getContextPath());
+				
 				String cookie2 = String.format("b=%s; max-age=864000; Path=%s; HttpOnly; Secure; SameSite=Lax;", pwd,
 						request.getContextPath());
 				response.addHeader("Set-Cookie", cookie1);

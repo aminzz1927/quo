@@ -4,9 +4,6 @@ public class Emp {
 	private int eno;
 	private String ename;
 	private String pwd;
-	private int dno;
-	private int rid;
-	
 	public Emp(int eno, String ename, String pwd, int dno, int rid, String tel, String email) {
 		super();
 		this.eno = eno;
@@ -17,6 +14,13 @@ public class Emp {
 		this.tel = tel;
 		this.email = email;
 	}
+
+
+
+	private int dno;
+	private int rid;
+	
+	
 	@Override
 	public String toString() {
 		return "Emp [eno=" + eno + ", ename=" + ename + ", pwd=" + pwd + ", dno=" + dno + ", rid=" + rid + ", tel="

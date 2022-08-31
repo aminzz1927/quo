@@ -24,7 +24,8 @@ import lombok.NoArgsConstructor;
  *      }
  *    }
  */
-
+@Data
+@NoArgsConstructor
 public class Result {
 
     private boolean success;//是否成功
@@ -51,57 +52,7 @@ public class Result {
         this.success = success;
     }
 
-    public Result() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Result(boolean success, Integer code, String message, Object data) {
-		super();
-		this.success = success;
-		this.code = code;
-		this.message = message;
-		this.data = data;
-	}
-
-	@Override
-	public String toString() {
-		return "Result [success=" + success + ", code=" + code + ", message=" + message + ", data=" + data + "]";
-	}
-
-	public boolean isSuccess() {
-		return success;
-	}
-
-	public void setSuccess(boolean success) {
-		this.success = success;
-	}
-
-	public Integer getCode() {
-		return code;
-	}
-
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public Object getData() {
-		return data;
-	}
-
-	public void setData(Object data) {
-		this.data = data;
-	}
-
-	public static Result SUCCESS(){
+    public static Result SUCCESS(){
         return new Result(ResultCode.SUCCESS);
     }
 

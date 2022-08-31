@@ -38,7 +38,7 @@ import com.quo.utils.ResultCode;
 * @author zhoumin
 
 */
-@Controller("roleController")
+@Controller("authorityController")
 @RequestMapping(value="/api")
 public class AuthorityController {
 	@Autowired

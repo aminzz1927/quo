@@ -27,5 +27,4 @@ public interface EmpMapper {
 	@Update("update emp set pwd=#{pwd} where eno=#{eno}")
 	int changePwd(Emp emp);
 	
-
 }

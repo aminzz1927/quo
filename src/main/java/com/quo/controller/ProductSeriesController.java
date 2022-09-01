@@ -33,81 +33,90 @@ import com.quo.utils.ResultCode;
  *
  */
 @RestController("productSeriesController")
-@RequestMapping(value="/api")
+@RequestMapping(value = "/api")
 public class ProductSeriesController {
 
 	@Autowired
 	public ProductSeriesService psService;
 
-	@RequestMapping(value="/product-series",method=RequestMethod.GET)
-	  public Result findAll() {
-		List<ProductSeries> pslist=	psService.getAll();
-	Result result=new Result(ResultCode.SUCCESS);
-	System.out.println(pslist);
-	result.setData(pslist);
-	   return result;
+	@RequestMapping(value = "/product-series", method = RequestMethod.GET)
+	public Result findAll() {
+		List<ProductSeries> pslist = psService.getAll();
+		Result result = new Result(ResultCode.SUCCESS);
+		System.out.println(pslist);
+		result.setData(pslist);
+		return result;
 	}
-	  
-	
-	
-	@RequestMapping(value="/product-series/{psid}",method = RequestMethod.GET)
-    public Result findByPsid(@PathVariable(value="psid") int psid) {
-       
-       ProductSeries2 productseries= psService.getByPsid(psid);
-        Result result = new Result(ResultCode.SUCCESS);
-       result.setData(productseries);
-       return result;
-	
-    }
-	
-	@RequestMapping(value = "/product-series/{psid}",method = RequestMethod.PUT)
-    public Result update(@PathVariable(value="psid") int psid, @RequestBody ProductSeries2 productseries ) {
-        //业务操作
-		
-		productseries.setPsid(psid);
-		psService.update(productseries);
-        return new Result(ResultCode.SUCCESS);
-    }
-	
-	 @RequestMapping(value="/product-series/{psid}",method = RequestMethod.DELETE)
-	    public Result delete(@PathVariable(value="psid") int psid) {
-	        psService.deleteById(psid);
-	        return new Result(ResultCode.SUCCESS);
-	    }
-	
-	 @RequestMapping(value="/product-series-del-enable",method = RequestMethod.GET) 
-    public Result seriesDelEnable() {
-    	List<Productdel> data=new ArrayList<>();
-		List<ProductSeries> pslist=	psService.getAll();
+
+	@RequestMapping(value = "/product-series/{psid}", method = RequestMethod.GET)
+	public Result findByPsid(@PathVariable(value = "psid") int psid) {
+
+		ProductSeries2 productseries = psService.getByPsid(psid);
+		Result result = new Result(ResultCode.SUCCESS);
+		result.setData(productseries);
+		return result;
+
+	}
+
+	@RequestMapping(value = "/product-series/{psid}", method = RequestMethod.PUT)
+	public Result update(@PathVariable(value = "psid") int psid, @RequestBody ProductSeries2 productseries) {
+		// 业务操作
+		String notes = productseries.getNotes();
+		int notelen = notes.length();
+		if (notelen > 10) {
+			return new Result(ResultCode.NOLENGTH);
+		} else {
+			productseries.setPsid(psid);
+			psService.update(productseries);
+			return new Result(ResultCode.SUCCESS);
+		}
+
+	}
+
+	@RequestMapping(value = "/product-series/{psid}", method = RequestMethod.DELETE)
+	public Result delete(@PathVariable(value = "psid") int psid) {
+		psService.deleteById(psid);
+		return new Result(ResultCode.SUCCESS);
+	}
+
+	@RequestMapping(value = "/product-series-del-enable", method = RequestMethod.GET)
+	public Result seriesDelEnable() {
+		List<Productdel> data = new ArrayList<>();
+		List<ProductSeries> pslist = psService.getAll();
 		for (ProductSeries pro : pslist) {
-			Productdel prodel=	new Productdel(pro.getPsid(), psService.getDelEnableByPsid(pro.getPsid()));
+			Productdel prodel = new Productdel(pro.getPsid(), psService.getDelEnableByPsid(pro.getPsid()));
 			data.add(prodel);
 		}
-		
-		Result result=new Result(ResultCode.SUCCESS);
+
+		Result result = new Result(ResultCode.SUCCESS);
 		result.setData(data);
 		return result;
 	}
-	 
-	 @RequestMapping(value="/product-series-del",method = RequestMethod.POST)
-	    public Result seriesDelAll(@RequestBody  int[] psids) throws CommonException{
-	
-			psService.seriesDelAll(psids);
-			
-	        return new Result(ResultCode.SUCCESS);
-	    }
-	 
-	    @RequestMapping(value="/product-series",method = RequestMethod.POST)
-	    public Result save(@RequestBody ProductSeries2 productseries )  {
-			/*
-			 * ProductSeries2 ps2=new ProductSeries2(); ps2.setPsname(ps2.getPsname());
-			 * ps2.setTid(ps2.getTid()); ps2.setNotes(ps2.getNotes());
-			 */
-	    	psService.save(productseries);
-	        return new Result(ResultCode.SUCCESS);
-	    }
-	  
-	  }
-	
 
+	@RequestMapping(value = "/product-series-del", method = RequestMethod.POST)
+	public Result seriesDelAll(@RequestBody int[] psids) throws CommonException {
 
+		psService.seriesDelAll(psids);
+
+		return new Result(ResultCode.SUCCESS);
+	}
+
+	@RequestMapping(value = "/product-series", method = RequestMethod.POST)
+	public Result save(@RequestBody ProductSeries2 productseries) {
+		/*
+		 * ProductSeries2 ps2=new ProductSeries2(); ps2.setPsname(ps2.getPsname());
+		 * ps2.setTid(ps2.getTid()); ps2.setNotes(ps2.getNotes());
+		 */
+
+		String notes = productseries.getNotes();
+		int notelen = notes.length();
+		if (notelen > 10) {
+			return new Result(ResultCode.NOLENGTH);
+		} else {
+			psService.save(productseries);
+			return new Result(ResultCode.SUCCESS);
+		}
+
+	}
+
+}

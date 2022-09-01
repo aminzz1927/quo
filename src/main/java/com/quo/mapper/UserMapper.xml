@@ -11,6 +11,10 @@
 			(#{ename},#{pwd},#{dno},#{rid},#{tel},#{email})
 	</insert>
 	
+	<update id="update" parameterType="empDto">
+		update emp set ename = #{ename},dno = #{dno},rid = #{rid},tel = #{tel},email = #{email} where eno = #{eno}
+	</update>
+	
 	
 </mapper>
 

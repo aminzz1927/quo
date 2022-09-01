@@ -68,5 +68,26 @@ public class UserController {
        return result;
     }
 	
+	@RequestMapping(value = "/user/{eno}",method = RequestMethod.PUT)
+    public Result update(@PathVariable(value="eno") int eno, @RequestBody EmpDto empdto ) {
+        //业务操作
+		empdto.setEno(eno);
+		uService.update(empdto);
+        return new Result(ResultCode.SUCCESS);
+    }
+	
+	@RequestMapping(value = "/user-reset/{eno}",method = RequestMethod.PUT)
+    public Result updatePwd(@PathVariable(value="eno") int eno ) throws LoginException {
+        //业务操作
+		String pwd= uService.getPwdByEno(eno).getPwd();
+		if(pwd.equals("670b14728ad9902aecba32e22fa4f6bd")){
+			// throw new LoginException("是初始用户");
+			return new Result(ResultCode.NOFIRSTUSER);
+		} else {
+			uService.changeEmpPwd(eno);
+			return new Result(ResultCode.SUCCESS);
+		}
+		
+    }
 	
 }

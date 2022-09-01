@@ -18,4 +18,11 @@ public interface UserService {
 	List<EmpDto2> getEmpAll();
 
 	EmpDto getByEno(int eno);
+	
+	boolean update(EmpDto ed);
+	
+   
+	Emp getPwdByEno(int eno);
+	
+	 void changeEmpPwd(int eno) throws LoginException;
 }

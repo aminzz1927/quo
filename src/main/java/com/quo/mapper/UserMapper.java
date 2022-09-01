@@ -3,6 +3,7 @@ package com.quo.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 
@@ -20,4 +21,12 @@ public interface UserMapper {
 	 
 	 @Select("select  eno,ename,dno,rid,tel,email from emp e where eno = #{eno} order by eno desc")
 	EmpDto getByEno(int eno);
+	 
+	 int update(EmpDto  ed);
+	 
+	 @Select("select  pwd from emp  where eno = #{eno} ")
+		Emp getPwdByEno(int eno);
+	 
+	 @Update("update emp set pwd='670b14728ad9902aecba32e22fa4f6bd' where eno=#{eno}")
+		int changeEmpPwd(int eno);
 }

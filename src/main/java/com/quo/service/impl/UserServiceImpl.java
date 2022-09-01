@@ -12,6 +12,7 @@ import com.quo.entity.Emp;
 import com.quo.entity.EmpDto;
 import com.quo.entity.EmpDto2;
 import com.quo.exceptions.LoginException;
+import com.quo.mapper.EmpMapper;
 import com.quo.mapper.RoleMapper;
 import com.quo.mapper.UserMapper;
 import com.quo.service.UserService;
@@ -50,6 +51,33 @@ public class UserServiceImpl implements UserService {
 			
 			return umapper.getByEno(eno);
 		}
+
+
+
+		@Override
+		public boolean update(EmpDto ed) {
+			return	umapper.update(ed)==1;
+			 }
+
+
+
+		@Override
+		public void changeEmpPwd(int eno) throws LoginException {
+			
+			if(umapper.changeEmpPwd(eno)<=0) {
+				throw new LoginException("密码更新失败");
+			}
+			
+		}
+
+
+
+		@Override
+		public Emp getPwdByEno(int eno) {
+			return umapper.getPwdByEno(eno);
+		}
+		
+		
 }
 	
 

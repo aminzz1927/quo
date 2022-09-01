@@ -26,6 +26,7 @@ public class SystemController {
 	@Autowired
 	public SystemService systemService;
 	
+	  //获取审核金额
 	  @RequestMapping(value="/amountcheck",method=RequestMethod.GET)
 	  @ResponseBody 
 	  public Result getAmountCheck(){ 
@@ -38,6 +39,7 @@ public class SystemController {
 	  
 	  }
 	
+	  //修改审核金额
 	  @RequestMapping(value="/amountcheck",method=RequestMethod.PUT)
 	  @ResponseBody 
 	  public Result updateAmountCheck(@RequestBody Long amountCheck){ 
@@ -47,6 +49,30 @@ public class SystemController {
 		  return new Result(ResultCode.SUCCESS);
 	  
 	  }
+	  
+	  //获取有效期限
+	  @RequestMapping(value="/expiry",method=RequestMethod.GET)
+	   @ResponseBody 
+	   public Result getExpiry(){ 
+	    
+	    String expiry = systemService.getExpiry(); 
+	    Result result=new Result(ResultCode.SUCCESS);
+	    result.setData(expiry);     
+	    
+	    return result;
+	   
+	   }
+	   
+	   //修改有效期限
+	   @RequestMapping(value="/expiry",method=RequestMethod.PUT)
+	   @ResponseBody 
+	   public Result updateExpiry(@RequestBody String expiry){ 
+	    
+	    systemService.updateExpiry(expiry);    
+	    
+	    return new Result(ResultCode.SUCCESS);
+	   
+	   }
 	  
 	  
 	

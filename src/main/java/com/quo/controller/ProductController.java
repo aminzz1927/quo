@@ -22,7 +22,9 @@ import com.quo.entity.Product;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
+import com.quo.entity.Quote;
 import com.quo.service.ProductService;
+import com.quo.service.QuoteService;
 import com.quo.utils.Result;
 import com.quo.utils.ResultCode;
 
@@ -37,6 +39,9 @@ public class ProductController {
 
 	@Autowired
 	public ProductService pService;
+	
+	@Autowired
+	public QuoteService qService;
 
 	
 	     //获取所有产品信息		
@@ -100,9 +105,23 @@ public class ProductController {
 		  
 		  
 		  //删除单个产品
+			/*	  @RequestMapping(value="/product/{pid}",method=RequestMethod.DELETE)
+				  @ResponseBody
+				  public Result deleteProduct(@PathVariable(value="pid") Long pid){ 
+					      pService.deleteProduct(pid);
+					  return new Result(ResultCode.SUCCESS);
+				  
+				  }
+				  */
+		  
 		  @RequestMapping(value="/product/{pid}",method=RequestMethod.DELETE)
 		  @ResponseBody
 		  public Result deleteProduct(@PathVariable(value="pid") Long pid){ 
+			  
+			  Long[] pids =	qService.getPidsByQuote();
+			  if (Arrays.binarySearch(pids, pid) >=0) {
+				  return new Result(ResultCode.NODEL);
+			  }
 			      pService.deleteProduct(pid);
 			  return new Result(ResultCode.SUCCESS);
 		  

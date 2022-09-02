@@ -15,7 +15,16 @@
 		update emp set ename = #{ename},dno = #{dno},rid = #{rid},tel = #{tel},email = #{email} where eno = #{eno}
 	</update>
 	
+	<delete id="deleteByEno" parameterType="int">
+		delete  from emp where eno = #{eno}
+	</delete>
 	
+	<delete id="deleteByEnos">
+		delete from emp where eno in
+		<foreach collection="array" separator="," item="eno" open="(" close=")">
+		#{eno}
+		</foreach>
+	</delete>
 </mapper>
 
 

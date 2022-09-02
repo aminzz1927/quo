@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -89,5 +90,20 @@ public class UserController {
 		}
 		
     }
+	
+	@RequestMapping(value = "/user/{eno}", method = RequestMethod.DELETE)
+	public Result delete(@PathVariable(value = "eno") int eno) {
+		uService.deleteByEno(eno);
+		return new Result(ResultCode.SUCCESS);
+	}
+	
+	 //删除多个产品
+	  @RequestMapping(value="/users-del",method=RequestMethod.POST)		  
+	  @ResponseBody 
+	  public Result deleteByEnos(@RequestBody int[] enos){ 
+		  uService.deleteByEnos(enos);
+		  return new Result(ResultCode.SUCCESS);
+	  
+	  }
 	
 }

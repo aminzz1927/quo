@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.quo.entity.Product;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
+import com.quo.entity.ProductType;
 import com.quo.entity.Productdel;
 import com.quo.exceptions.CommonException;
 import com.quo.service.ProductSeriesService;
@@ -118,5 +119,7 @@ public class ProductSeriesController {
 		}
 
 	}
+	
+	
 
 }

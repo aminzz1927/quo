@@ -25,4 +25,8 @@ public interface UserService {
 	Emp getPwdByEno(int eno);
 	
 	 void changeEmpPwd(int eno) throws LoginException;
-}
+	 
+	  boolean deleteByEno(int eno);
+	  
+		boolean deleteByEnos(int[] enos);
+	  }

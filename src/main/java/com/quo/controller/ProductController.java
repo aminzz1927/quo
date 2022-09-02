@@ -100,6 +100,28 @@ public class ProductController {
 			  return result;
 		  
 		  }	
+		  
+		//获取产品类型列表(シリーズ編集)
+		  @RequestMapping(value="/product-type-list-series-edit",method=RequestMethod.GET)		  
+		  @ResponseBody 
+		  public Result getTypeListForSeries(){ 
+			  List<ProductType> typeList = pService.getTypeList();
+			  Result result=new Result(ResultCode.SUCCESS);
+			  result.setData(typeList);
+			  return result;
+		  
+		  }	
+		  
+		//获取产品类型列表(新規シリーズ)
+		  @RequestMapping(value="/product-type-list-series-add",method=RequestMethod.GET)		  
+		  @ResponseBody 
+		  public Result getTypeListForNewSeries(){ 
+			  List<ProductType> typeList = pService.getTypeList();
+			  Result result=new Result(ResultCode.SUCCESS);
+			  result.setData(typeList);
+			  return result;
+		  
+		  }	
 		  	  
 		  
 		  //获取产品系列列表(产品编辑)

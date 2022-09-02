@@ -76,6 +76,21 @@ public class UserServiceImpl implements UserService {
 		public Emp getPwdByEno(int eno) {
 			return umapper.getPwdByEno(eno);
 		}
+
+
+
+		@Override
+		public boolean deleteByEno(int eno) {
+			return umapper.deleteByEno(eno) == 1;
+		}
+
+
+
+		@Override
+		public boolean deleteByEnos(int[] enos) {
+	
+			return 	umapper.deleteByEnos(enos);
+		}
 		
 		
 }

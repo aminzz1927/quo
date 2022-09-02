@@ -29,4 +29,9 @@ public interface UserMapper {
 	 
 	 @Update("update emp set pwd='670b14728ad9902aecba32e22fa4f6bd' where eno=#{eno}")
 		int changeEmpPwd(int eno);
+	 
+	    int deleteByEno(int eno);
+	    
+		boolean deleteByEnos(int[] enos);
 }
+

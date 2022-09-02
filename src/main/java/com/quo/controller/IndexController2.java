@@ -14,16 +14,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
  * 
  * @author 韩宛廷
  *
  */
-@WebServlet({ "/login", "/resetpw", "/home", "/system/*", "/product/*" })
-public class IndexController extends HttpServlet {
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+@Controller("indexController2")
+public class IndexController2 {
+	@RequestMapping({ "/login", "/resetpw", "/home", "/system/*", "/product/*" })
+	public String check(HttpServletResponse response) throws IOException {
 		ServletContext application = getServletConfig().getServletContext();
 
 		// as a full path you can use with a File object
@@ -32,16 +36,8 @@ public class IndexController extends HttpServlet {
 
 		String content = new String(Files.readAllBytes(Paths.get(pathToFile)));
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println(content);
-		out.close();
+		return content;
 
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

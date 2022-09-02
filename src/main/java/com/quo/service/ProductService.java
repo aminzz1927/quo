@@ -7,6 +7,7 @@ import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
 import com.quo.entity.ProductSeries;
+import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
 
 /** 
@@ -24,7 +25,7 @@ public interface ProductService {
 
 	List<ProductType> getTypeList();
 
-	List<ProductSeries> getSeriesList();
+	List<ProductSeries2> getSeriesList();
 
 	boolean deleteProduct(Long pid);
 

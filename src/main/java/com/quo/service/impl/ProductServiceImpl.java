@@ -10,6 +10,7 @@ import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
 import com.quo.entity.ProductSeries;
+import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
 import com.quo.mapper.ProductMapper;
 import com.quo.service.ProductService;
@@ -60,7 +61,7 @@ public class ProductServiceImpl implements ProductService{
 
 
 	@Override
-	public List<ProductSeries> getSeriesList() {
+	public List<ProductSeries2> getSeriesList() {
 		// TODO Auto-generated method stub
 		return pMapper.getSeriesList();
 	}

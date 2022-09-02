@@ -3,6 +3,8 @@ package com.quo.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.quo.dto.MenuDto;
+import com.quo.entity.SystemSettings;
 import com.quo.mapper.SystemMapper;
 import com.quo.service.SystemService;
 
@@ -19,37 +21,29 @@ public class SystemServiceImpl implements SystemService {
 
 	//获取审核金额
 	@Override
-	public Long getAmountCheck() {
+	public SystemSettings getSystemSettings() {
 		// TODO Auto-generated method stub
-		return systemMapper.getAmountCheck();
+		return systemMapper.getSystemSettings();
 	}
 
 
 	//更新审核金额
 	@Override
-	public boolean updateAmountCheck(Long amountCheck) {
+	public boolean updateSystemSettings(SystemSettings systemSettings) {
 		// TODO Auto-generated method stub
-		return systemMapper.updateAmountCheck(amountCheck);
+		return systemMapper.updateSystemSettings(systemSettings);
 	}
 
 
-	//获取有效期
+	//获取登录信息及权限
 	@Override
-	public String getExpiry() {
+	public MenuDto getMenuDto(int eno) {
 		// TODO Auto-generated method stub
-		return systemMapper.getExpiry();
+		return systemMapper.getMenuDto(eno);
 	}
 
 
-	//更新有效期
-	@Override
-	public boolean updateExpiry(String expiry) {
-		// TODO Auto-generated method stub
-		
-		return systemMapper.updateExpiry(expiry);
-		
-	}
-	
+
 	
 
 }

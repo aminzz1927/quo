@@ -79,8 +79,8 @@ public class ProductController {
 		  
 		  }		  		  
 		  
-		  //获取产品类型列表
-		  @RequestMapping(value="/product-type-list",method=RequestMethod.GET)		  
+		  //获取产品类型列表(产品编辑)
+		  @RequestMapping(value="/product-type-list-edit",method=RequestMethod.GET)		  
 		  @ResponseBody 
 		  public Result getTypeList(){ 
 			  List<ProductType> typeList = pService.getTypeList();
@@ -88,14 +88,37 @@ public class ProductController {
 			  result.setData(typeList);
 			  return result;
 		  
-		  }		  
+		  }		
+		  
+		  //获取产品类型列表(添加新品)
+		  @RequestMapping(value="/product-type-list-add",method=RequestMethod.GET)		  
+		  @ResponseBody 
+		  public Result getTypeListForNew(){ 
+			  List<ProductType> typeList = pService.getTypeList();
+			  Result result=new Result(ResultCode.SUCCESS);
+			  result.setData(typeList);
+			  return result;
+		  
+		  }	
 		  	  
 		  
-		  //获取产品系列列表
-		  @RequestMapping(value="/product-series-list",method=RequestMethod.GET)		  
+		  //获取产品系列列表(产品编辑)
+		  @RequestMapping(value="/product-series-list-edit",method=RequestMethod.GET)		  
 		  @ResponseBody 
-		  public Result getSeriesList(){ 
-			  List<ProductSeries> seriesList = pService.getSeriesList();
+		  public Result getSeriesListForEdit(){ 
+			  List<ProductSeries2> seriesList = pService.getSeriesList();
+			  System.out.println("AAAAAAAAAA"+seriesList);
+			  Result result=new Result(ResultCode.SUCCESS);
+			  result.setData(seriesList);
+			  return result;
+		  
+		  }
+		  
+		  //获取产品系列列表(添加新品)
+		  @RequestMapping(value="/product-series-list-add",method=RequestMethod.GET)		  
+		  @ResponseBody 
+		  public Result getSeriesListForNew(){ 
+			  List<ProductSeries2> seriesList = pService.getSeriesList();
 			  Result result=new Result(ResultCode.SUCCESS);
 			  result.setData(seriesList);
 			  return result;
@@ -132,6 +155,12 @@ public class ProductController {
 		  @ResponseBody 
 		  public Result deleteProducts(@RequestBody Long[] pids){ 
 			  
+			  Long[] pidsOfQuote =	qService.getPidsByQuote();
+			  for(Long pid:pids) {				 
+			  	  if (Arrays.binarySearch(pidsOfQuote, pid) >=0) {
+				  return new Result(ResultCode.NODEL);
+			  }
+			} 
 			  		
 				  pService.deleteProducts(pids);
 				  

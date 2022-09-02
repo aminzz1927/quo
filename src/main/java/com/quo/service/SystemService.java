@@ -1,5 +1,8 @@
 package com.quo.service;
 
+import com.quo.dto.MenuDto;
+import com.quo.entity.SystemSettings;
+
 /** 
 
 * @author zhoumin
@@ -8,17 +11,16 @@ package com.quo.service;
 
 public interface SystemService {
 
-	//获取审核金额
-	Long getAmountCheck();
+	//获取审核金额和有效期限
+	SystemSettings getSystemSettings();
 
-	//更新审核金额
-	boolean updateAmountCheck(Long amountCheck);
+	//更新审核金额和有效期限
+	boolean updateSystemSettings(SystemSettings systemSettings);
 
-	//获取有效期
-	String getExpiry();
+	//获取登录信息及权限
+	MenuDto getMenuDto(int eno);
 
-	//更新有效期
-	boolean updateExpiry(String expiry);
+
 	
 	
 

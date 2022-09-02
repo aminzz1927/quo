@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.quo.dto.MenuDto;
+import com.quo.entity.Emp;
 import com.quo.entity.SystemSettings;
 
 /** 
@@ -27,6 +28,10 @@ public interface SystemMapper {
 			+ "dept d on e.dno=d.dno left join role r on e.rid=r.rid left join \r\n"
 			+ "authority a on e.rid=a.rid where eno=#{eno}")
 	MenuDto getMenuDto(int eno);
+
+	
+	@Select("select * from emp where eno=#{eno} and pwd=#{pwd}")
+	Emp ifExists(int eno, String pwd);
 
 
 

@@ -68,7 +68,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<insert id="addProduct" parameterType="product">
-		insert into product values(#{pid},#{pname},#{psid},#{stock},#{connection},#{pinterface},#{noise},
+		insert into product(pname,psid,connection,pinterface,noise,
+		bass,waterproof,mic,price,packageInfo) values(#{pname},#{psid},#{connection},#{pinterface},#{noise},
 		#{bass},#{waterproof},#{mic},#{price},#{packageInfo}) 
 	
 	</insert>

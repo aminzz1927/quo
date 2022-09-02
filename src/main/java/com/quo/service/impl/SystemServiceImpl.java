@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quo.dto.MenuDto;
+import com.quo.entity.Emp;
 import com.quo.entity.SystemSettings;
 import com.quo.mapper.SystemMapper;
 import com.quo.service.SystemService;
@@ -40,6 +41,13 @@ public class SystemServiceImpl implements SystemService {
 	public MenuDto getMenuDto(int eno) {
 		// TODO Auto-generated method stub
 		return systemMapper.getMenuDto(eno);
+	}
+
+
+	@Override
+	public Emp ifExists(int eno, String pwd) {
+		// TODO Auto-generated method stub
+		return systemMapper.ifExists(eno,pwd);
 	}
 
 

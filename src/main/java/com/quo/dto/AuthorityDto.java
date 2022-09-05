@@ -10,6 +10,6 @@ import lombok.Data;
 @Data
 public class AuthorityDto {
 	
-	private String mname;
+	private String mname;		//菜单名
 
 }

@@ -21,14 +21,14 @@
         </bean>
         
         <!-- 配置  拦截器interceptor -->
-  	<!--    <mvc:interceptors>
+  		<!-- <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="com.quo.global.LoginInterceptor"/>
         </mvc:interceptor>
         
-       </mvc:interceptors>   -->
-        
+       </mvc:interceptors> 
+         -->
         
         
           	 <!-- 上传文件解析器 ，上传图片 -->

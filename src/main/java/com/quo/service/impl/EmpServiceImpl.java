@@ -19,7 +19,7 @@ import com.quo.utils.SqlSessionUtil;
  * @author 韩宛廷
  *
  */
-
+@Service("empService")
 public class EmpServiceImpl implements EmpService {
 
 	private EmpMapper empDao = SqlSessionUtil.getCurrentSqlSession().getMapper(EmpMapper.class);

@@ -190,7 +190,18 @@ public class ProductController {
 			  
 			  return new Result(ResultCode.SUCCESS);
 		  
-		  }
+		  }	
+
+		  //添加单个产品
+		  @RequestMapping(value="/product/add",method=RequestMethod.POST)
+		  @ResponseBody
+		  public Result addProduct(@RequestBody Product product){ 
+
+			  	pService.addProduct(product);
+			
+				return new Result(ResultCode.SUCCESS);						  
+		  
+		  }		  
 
 		  /**
 			  * 添加多个产品
@@ -207,21 +218,5 @@ public class ProductController {
 		        return new Result(ResultCode.SUCCESS);
 		    }
 
-
-		  //添加单个产品
-		  @RequestMapping(value="/product/add",method=RequestMethod.POST)
-		  @ResponseBody
-		  public Result addProduct(@RequestBody Product product){ 
-
-			  	pService.addProduct(product);
-			
-				return new Result(ResultCode.SUCCESS);
-			  
-			  
-		  
-		  }
-		  
-
-		
 
 }

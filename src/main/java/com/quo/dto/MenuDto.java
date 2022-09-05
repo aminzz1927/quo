@@ -1,5 +1,7 @@
 package com.quo.dto;
 
+import java.util.List;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,10 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MenuDto {
 	
-	private Integer eno;
-	private String ename;
-	private String dname;
-	private String rname;
-	private Integer[] mids;
+	private EmpDto empDto;				//获取用户名、部门名、角色名
+	private List<Integer> mids;			//权限集合
 
 }

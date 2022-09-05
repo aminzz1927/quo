@@ -7,35 +7,35 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductDto {
 	
-	private Long pid;
+	private Long pid;						//产品编号
 	
-	private String pname;
+	private String pname;					//产品名称
 	
-	private Integer tid;
+	private Integer tid;					//产品系列编号
 	
-	private String tname;
+	private String tname;					//库存
 
-	private Integer psid; 
+	private Integer psid; 					//产品系列编号
 
-	private String psname;	
+	private String psname;					//产品系列名称
 	
-	private Double price;
+	private Double price;					//价格
 	
-	private int stock;
+	private int stock;						//库存
 	
-	private String connection;
+	private String connection;				//耳机连接方式
 	
-	private String pInterface;
+	private String pInterface;				//耳机接口
 	
-	private String noise;
+	private String noise;					//降噪
 	
-	private String bass;
+	private String bass;					//重低音
 	
-	private String waterproof;
+	private String waterproof;				//防水功能
 
-    private String mic;
+    private String mic;						//麦克风
     
-    private String packageInfo;
+    private String packageInfo;				//包装清单
 
 
 	

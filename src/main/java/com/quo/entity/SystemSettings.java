@@ -10,8 +10,8 @@ import lombok.Data;
 @Data
 public class SystemSettings {
 	
-	private Long amountCheck;
+	private Long amountCheck;			//审核金额标准
 	
-	private String expiry;
+	private Integer expiry;				//有效期限
 
 }

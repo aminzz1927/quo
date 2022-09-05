@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.quo.dto.EmpDto;
 import com.quo.dto.MenuDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Emp;
@@ -40,6 +41,9 @@ public class SystemController {
 	@Autowired
 	public AuthorityService authorityService;
 	
+	@Autowired
+	public EmpService eService;
+	
 	  //获取审核金额和有效期限
 	  @RequestMapping(value="/system-setting",method=RequestMethod.GET)
 	  @ResponseBody 
@@ -52,7 +56,7 @@ public class SystemController {
 		  return result;
 	  
 	  }
-	
+	 
 	  //修改审核金额和有效期限
 	  @RequestMapping(value="/system-setting",method=RequestMethod.PUT)
 	  @ResponseBody 
@@ -67,7 +71,7 @@ public class SystemController {
 	  //获取用户登录信息和权限
 	  @RequestMapping(value="/menu",method=RequestMethod.GET)
 	  @ResponseBody 
-	  public Result getMenu(HttpServletRequest request){ 
+	  public Result getMenu(HttpServletRequest request,MenuDto menuDto){ 
 		  
 		  Cookie[] cookies = request.getCookies();	
 		  Integer eno = 0;
@@ -83,13 +87,19 @@ public class SystemController {
 		    	pwd = cookie.getValue();		    		    	
 		    }			  	          
 		  }	  		
-		  System.out.println("员工编号"+eno);
-		  System.out.println("密码"+pwd);
-		  Emp empIsLogin = systemService.ifExists(eno,pwd);
-		  System.out.println("111111111111111111111111");	
-		  System.out.println("用户"+empIsLogin);	
+		  
+		  Emp empIsLogin = systemService.ifExists(eno,pwd);	  
+		  EmpDto emp2 = systemService.getEmpDtoByEno(empIsLogin.getEno());
+		  List<Integer> mids = authorityService.findListByRoleId(empIsLogin.getRid());
+		  
+		  menuDto.setEmpDto(emp2);
+		  menuDto.setMids(mids);	
+		  
+		  request.getSession().setAttribute("empIsLogin", empIsLogin);
+		  request.getSession().setAttribute("permissions", mids);
+		  
 		  Result result=new Result(ResultCode.SUCCESS);
-		  result.setData(empIsLogin); 
+		  result.setData(menuDto); 
 		  	  return result;
 	  }
 	  

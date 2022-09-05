@@ -3,12 +3,14 @@ package com.quo.service.impl;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
+import com.quo.entity.Product2;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
@@ -92,7 +94,7 @@ public class ProductServiceImpl implements ProductService{
 	 * author:韩宛廷
 	 */
 	@Override
-	public boolean saves(List<Product> productList) {
+	public boolean saves(List<Product2> productList) {
 		
 		return 	pMapper.saves(productList)==productList.size();
 			

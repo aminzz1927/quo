@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
+import com.quo.entity.Product2;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
@@ -44,6 +45,6 @@ public interface ProductMapper {
 
 	boolean addProduct(Product product);
 	
-	int saves(List<Product> productList);
+	int saves(List<Product2> productList);
 
 }

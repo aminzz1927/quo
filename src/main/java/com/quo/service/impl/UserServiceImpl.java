@@ -27,33 +27,30 @@ public class UserServiceImpl implements UserService {
 	private UserMapper umapper;
 
 
-
+//添加新用户
 		@Override
-		public boolean save(Emp e){
-			
-			
+		public boolean save(EmpDto e){
 			
 		return	umapper.save(e)==1;
 	
 			}
-
-
-
+		
+		//获取所有用户信息
 		@Override
-		public List<EmpDto2> getEmpAll() {
+		public List<Emp> getEmpAll() {
 			return umapper.getEmpAll();
 		}
 
 
 
 		@Override
-		public EmpDto getByEno(int eno) {
+		public Emp getByEno(int eno) {
 			
 			return umapper.getByEno(eno);
 		}
 
 
-
+		//更新用户信息
 		@Override
 		public boolean update(EmpDto ed) {
 			return	umapper.update(ed)==1;

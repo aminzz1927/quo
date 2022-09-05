@@ -6,6 +6,7 @@ import java.util.List;
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
+import com.quo.entity.Product2;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
@@ -33,5 +34,5 @@ public interface ProductService {
 
 	boolean addProduct(Product product);
 
-	boolean saves(List<Product> productList);
+	boolean saves(List<Product2> productList);
 }

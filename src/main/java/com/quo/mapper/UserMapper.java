@@ -14,14 +14,15 @@ import com.quo.entity.EmpDto2;
 import com.quo.entity.ProductSeries2;
 @Repository
 public interface UserMapper {
-	int save(Emp e);
-	
-	 @Select("select eno,ename,dname,rname,tel,email from emp e left join dept d on e.dno=d.dno  left join role r on e.rid=r.rid order by eno desc")
-	List<EmpDto2> getEmpAll();
-	 
-	 @Select("select  eno,ename,dno,rid,tel,email from emp e where eno = #{eno} order by eno desc")
-	EmpDto getByEno(int eno);
-	 
+	//添加新用户
+	int save(EmpDto e);
+	//获取所有用户信息
+@Select("select e.ename,e.eno,e.tel,e.email ,d.dname,r.rname from emp e left join role r on e.rid=r.rid left join dept d on r.dno=d.dno order by eno desc ")
+	List<Emp> getEmpAll();
+	//获取单个用户信息
+	 @Select("select e.ename,d.dname,r.rname,e.eno,e.tel,e.email from emp e left join role r on e.rid=r.rid left join dept d on r.dno=d.dno where eno=#{eno} order by eno desc  ")
+	Emp getByEno(int eno);
+	//更新用户信息
 	 int update(EmpDto  ed);
 	 
 	 @Select("select  pwd from emp  where eno = #{eno} ")

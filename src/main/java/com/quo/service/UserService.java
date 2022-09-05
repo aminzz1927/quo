@@ -12,13 +12,13 @@ import com.quo.entity.Role;
 import com.quo.exceptions.LoginException;
 
 public interface UserService {
-	
-	boolean save(Emp e);
-	
-	List<EmpDto2> getEmpAll();
-
-	EmpDto getByEno(int eno);
-	
+	//添加用户信息
+	boolean save(EmpDto e);
+	//获取所有用户信息
+	List<Emp> getEmpAll();
+    
+	Emp getByEno(int eno);
+	//更新用户信息
 	boolean update(EmpDto ed);
 	
    

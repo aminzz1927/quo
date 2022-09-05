@@ -4,15 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.quo.mapper.UserMapper">
-<insert id="save" parameterType="emp">
+<insert id="save" parameterType="empDto">
 		insert into emp
-			(ename,pwd,dno,rid,tel,email)
+			(ename,rid,tel,email)
 		values
-			(#{ename},#{pwd},#{dno},#{rid},#{tel},#{email})
+			(#{ename},#{rid},#{tel},#{email})
 	</insert>
 	
 	<update id="update" parameterType="empDto">
-		update emp set ename = #{ename},dno = #{dno},rid = #{rid},tel = #{tel},email = #{email} where eno = #{eno}
+		update emp set ename = #{ename},rid = #{rid},tel = #{tel},email = #{email} where eno = #{eno}
 	</update>
 	
 	<delete id="deleteByEno" parameterType="int">

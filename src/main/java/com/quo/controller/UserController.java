@@ -43,18 +43,18 @@ public class UserController {
 	public UserService uService;
 	
 
-	
+	//添加新用户
 	@RequestMapping(value="/user",method=RequestMethod.POST)
-	  public Result save(@RequestBody Emp emp) {
-		emp.setPwd("670b14728ad9902aecba32e22fa4f6bd");
+	  public Result save(@RequestBody EmpDto emp) {
 		uService.save(emp);
 		System.out.println(emp);
 		 return new Result(ResultCode.SUCCESS);
 	}
 	
+	//获取所有用户信息
 	@RequestMapping(value="/users",method=RequestMethod.GET)
 	  public Result findEmpAll() {
-		List<EmpDto2> elist=	uService.getEmpAll();
+		List<Emp> elist=uService.getEmpAll();
 	Result result=new Result(ResultCode.SUCCESS);
 	System.out.println(elist);
 	result.setData(elist);
@@ -63,12 +63,13 @@ public class UserController {
 	
 	@RequestMapping(value="/user/{eno}",method = RequestMethod.GET)
     public Result findByEno(@PathVariable(value="eno") int eno) {
-        EmpDto empdto= uService.getByEno(eno);
+        Emp emp= uService.getByEno(eno);
         Result result = new Result(ResultCode.SUCCESS);
-       result.setData(empdto);
+       result.setData(emp);
        return result;
     }
 	
+	//更新用户信息
 	@RequestMapping(value = "/user/{eno}",method = RequestMethod.PUT)
     public Result update(@PathVariable(value="eno") int eno, @RequestBody EmpDto empdto ) {
         //业务操作

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
+import com.quo.entity.Product2;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
@@ -199,18 +200,8 @@ public class ProductController {
 			  */
 		    @RequestMapping(value="/products",method = RequestMethod.POST)
 		    @ResponseBody
-		    public Result saves(@RequestBody List<Product> productList )  {
+		    public Result saves(@RequestBody List<Product2> productList )  {
 		    	
-				/*
-				 * Product p=new Product();
-				 * 
-				 * p.setPname(p.getPname()); p.setPsid(p.getPsid()); p.setStock(p.getStock());
-				 * p.setConnection(p.getConnection()); p.setPinterface(p.getPinterface());
-				 * p.setNoise(p.getNoise()); p.setBass(p.getBass());
-				 * p.setWaterproof(p.getWaterproof()); p.setMic(p.getMic());
-				 * p.setPrice(p.getPrice()); p.setPackageInfo(p.getPackageInfo());
-				 * productList.add(p);
-				 */
 		    	System.out.println(productList);
 		    	pService.saves(productList);
 		        return new Result(ResultCode.SUCCESS);

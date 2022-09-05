@@ -9,7 +9,9 @@ import lombok.Data;
 
 @Data
 public class Emp {
+
     private int eno;//员工编号
+	private String pwd;
 	private String ename;  //姓名
 	private String dname;//部门名称
 	private String rname;//职位名称

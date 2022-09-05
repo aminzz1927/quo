@@ -24,15 +24,15 @@ public interface UserMapper {
 	Emp getByEno(int eno);
 	//更新用户信息
 	 int update(EmpDto  ed);
-	 
+	 //查询用户密码
 	 @Select("select  pwd from emp  where eno = #{eno} ")
 		Emp getPwdByEno(int eno);
-	 
+	 //重置用户密码
 	 @Update("update emp set pwd='670b14728ad9902aecba32e22fa4f6bd' where eno=#{eno}")
 		int changeEmpPwd(int eno);
-	 
+	 //删除单个用户
 	    int deleteByEno(int eno);
-	    
+	    //删除单个用户
 		boolean deleteByEnos(int[] enos);
 }
 

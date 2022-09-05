@@ -60,7 +60,7 @@ public class UserController {
 	result.setData(elist);
 	   return result;
 	}
-	
+	//获取单个用户信息
 	@RequestMapping(value="/user/{eno}",method = RequestMethod.GET)
     public Result findByEno(@PathVariable(value="eno") int eno) {
         Emp emp= uService.getByEno(eno);
@@ -78,6 +78,7 @@ public class UserController {
         return new Result(ResultCode.SUCCESS);
     }
 	
+	//重置密码
 	@RequestMapping(value = "/user-reset/{eno}",method = RequestMethod.PUT)
     public Result updatePwd(@PathVariable(value="eno") int eno ) throws LoginException {
         //业务操作
@@ -92,6 +93,7 @@ public class UserController {
 		
     }
 	
+	 //删除单个产品
 	@RequestMapping(value = "/user/{eno}", method = RequestMethod.DELETE)
 	public Result delete(@PathVariable(value = "eno") int eno) {
 		uService.deleteByEno(eno);

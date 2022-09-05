@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 			 }
 
 
-
+		//重置用户密码
 		@Override
 		public void changeEmpPwd(int eno) throws LoginException {
 			
@@ -68,14 +68,14 @@ public class UserServiceImpl implements UserService {
 		}
 
 
-
+//查询用户密码
 		@Override
 		public Emp getPwdByEno(int eno) {
 			return umapper.getPwdByEno(eno);
 		}
 
 
-
+		 //删除单个用户
 		@Override
 		public boolean deleteByEno(int eno) {
 			return umapper.deleteByEno(eno) == 1;

@@ -18,6 +18,7 @@ import com.quo.entity.Dept;
 import com.quo.entity.Emp;
 import com.quo.entity.EmpDto;
 import com.quo.entity.EmpDto2;
+import com.quo.entity.EmpDto3;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.Role;
@@ -54,7 +55,7 @@ public class UserController {
 	//获取所有用户信息
 	@RequestMapping(value="/users",method=RequestMethod.GET)
 	  public Result findEmpAll() {
-		List<Emp> elist=uService.getEmpAll();
+		List<EmpDto3> elist=uService.getEmpAll();
 	Result result=new Result(ResultCode.SUCCESS);
 	System.out.println(elist);
 	result.setData(elist);
@@ -63,7 +64,7 @@ public class UserController {
 	//获取单个用户信息
 	@RequestMapping(value="/user/{eno}",method = RequestMethod.GET)
     public Result findByEno(@PathVariable(value="eno") int eno) {
-        Emp emp= uService.getByEno(eno);
+        EmpDto3 emp= uService.getByEno(eno);
         Result result = new Result(ResultCode.SUCCESS);
        result.setData(emp);
        return result;

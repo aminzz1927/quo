@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.quo.entity.Emp;
 import com.quo.entity.EmpDto;
 import com.quo.entity.EmpDto2;
+import com.quo.entity.EmpDto3;
 import com.quo.exceptions.LoginException;
 import com.quo.mapper.EmpMapper;
 import com.quo.mapper.RoleMapper;
@@ -37,14 +38,14 @@ public class UserServiceImpl implements UserService {
 		
 		//获取所有用户信息
 		@Override
-		public List<Emp> getEmpAll() {
+		public List<EmpDto3> getEmpAll() {
 			return umapper.getEmpAll();
 		}
 
 
 
 		@Override
-		public Emp getByEno(int eno) {
+		public EmpDto3 getByEno(int eno) {
 			
 			return umapper.getByEno(eno);
 		}

@@ -11,6 +11,7 @@ import com.quo.entity.Dept;
 import com.quo.entity.Emp;
 import com.quo.entity.EmpDto;
 import com.quo.entity.EmpDto2;
+import com.quo.entity.EmpDto3;
 import com.quo.entity.ProductSeries2;
 @Repository
 public interface UserMapper {
@@ -18,10 +19,10 @@ public interface UserMapper {
 	int save(EmpDto e);
 	//获取所有用户信息
 @Select("select e.ename,e.eno,e.tel,e.email ,d.dname,r.rname from emp e left join role r on e.rid=r.rid left join dept d on r.dno=d.dno order by eno desc ")
-	List<Emp> getEmpAll();
+	List<EmpDto3> getEmpAll();
 	//获取单个用户信息
 	 @Select("select e.ename,d.dname,r.rname,e.eno,e.tel,e.email from emp e left join role r on e.rid=r.rid left join dept d on r.dno=d.dno where eno=#{eno} order by eno desc  ")
-	Emp getByEno(int eno);
+	 EmpDto3 getByEno(int eno);
 	//更新用户信息
 	 int update(EmpDto  ed);
 	 //查询用户密码

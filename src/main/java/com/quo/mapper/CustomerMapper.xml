@@ -6,8 +6,12 @@
 <mapper namespace="com.quo.mapper.CustomerMapper">
 
 	
-	<select id="getAll" resultType="customer">
-		select c.cid,c.cname, c.ctype,c.address,c.email,c.zip ,c.tel ,c.fax ,c.contact,e.ename ,c.csource,c.ftime   from customer c left join emp e on e.eno=c.salesno
+	<select id="getAll" resultType="customer2">
+		select c.cid,c.cname, c.ctype ,c.contact,e.ename ,c.csource,c.ftime   from customer c left join emp e on e.eno=c.salesno order by cid desc
+	</select>
+	
+	<select id="getByCid" resultType="customer">
+		select c.cid,c.cname, c.ctype,c.address,c.email,c.zip ,c.tel ,c.fax ,c.contact,e.ename ,c.csource,c.ftime   from customer c left join emp e on e.eno=c.salesno  where cid = #{cid} order by cid desc
 	</select>
 	
 </mapper>

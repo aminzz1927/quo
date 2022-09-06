@@ -1,12 +1,17 @@
  package com.quo.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.*;
+
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
-import com.quo.entity.Product;
+import com.quo.entity.*;
 import com.quo.entity.Product2;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
@@ -26,12 +31,15 @@ import com.quo.entity.ProductType;
 import com.quo.entity.Quote;
 import com.quo.service.ProductService;
 import com.quo.service.QuoteService;
+import com.quo.utils.ExcelWriter;
 import com.quo.utils.Result;
 import com.quo.utils.ResultCode;
+
 
 /** 
 
 * @author zhoumin
+ * 
 
 */
 @Controller("productController")
@@ -217,6 +225,30 @@ public class ProductController {
 		    	pService.saves(productList);
 		        return new Result(ResultCode.SUCCESS);
 		    }
-
-
+/**
+ * author:韩宛廷
+ * 产品导出
+ * @param request
+ * @param response
+ */          
+		    @RequestMapping(value="/product-export",method = RequestMethod.POST)
+		    public void ProductExport(HttpServletRequest request, HttpServletResponse response) {
+		    	String []pidstr = request.getParameterValues("pid");
+		    	int[] pids =  Arrays.stream(pidstr).mapToInt(Integer::parseInt).toArray();
+		    	String[] arrays= new String[]{"产品编号","产品名称","产品类型名称","产品系列名称","价格","库存","耳机连接方式","耳机接口","降噪","重低音","防水功能","麦克风","包装清单"};
+				 response.setContentType("application/vnd.ms-excel"); 
+				response.setHeader("Content-disposition", "attachment;filename=Product-"+System.currentTimeMillis()+".xlsx");
+				List<ProductExport> proList =	pService.getByPids(pids);
+			
+				ExcelWriter<ProductExport> ew = new ExcelWriter<>();
+				XSSFWorkbook workbook = ew.getWorkbook(proList, "产品信息", ProductExport.class, arrays);
+				try {
+					workbook.write(response.getOutputStream());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    	
+		    }
+		    
 }

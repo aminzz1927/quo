@@ -7,9 +7,12 @@ import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
 import com.quo.entity.Product2;
+import com.quo.entity.ProductExport;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
+import com.wkcto.crm.workbench.domain.Activity;
+import com.wkcto.crm.workbench.service.String;
 
 /** 
 
@@ -35,4 +38,6 @@ public interface ProductService {
 	boolean addProduct(Product product);
 
 	boolean saves(List<Product2> productList);
+	//产品导出
+	List<ProductExport> getByPids(int[] pids);
 }

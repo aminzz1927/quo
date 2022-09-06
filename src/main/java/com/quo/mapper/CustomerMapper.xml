@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.quo.mapper.CustomerMapper">
+
+	
+	<select id="getAll" resultType="customer">
+		select c.cid,c.cname, c.ctype,c.address,c.email,c.zip ,c.tel ,c.fax ,c.contact,e.ename ,c.csource,c.ftime   from customer c left join emp e on e.eno=c.salesno
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

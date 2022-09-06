@@ -26,7 +26,7 @@ public interface UserMapper {
 	 int update(EmpDto  ed);
 	 //查询用户密码
 	 @Select("select  pwd from emp  where eno = #{eno} ")
-		Emp getPwdByEno(int eno);
+		EmpDto2 getPwdByEno(int eno);
 	 //重置用户密码
 	 @Update("update emp set pwd='670b14728ad9902aecba32e22fa4f6bd' where eno=#{eno}")
 		int changeEmpPwd(int eno);

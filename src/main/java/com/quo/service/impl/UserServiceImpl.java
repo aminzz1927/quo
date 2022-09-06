@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
 //查询用户密码
 		@Override
-		public Emp getPwdByEno(int eno) {
+		public EmpDto2 getPwdByEno(int eno) {
 			return umapper.getPwdByEno(eno);
 		}
 

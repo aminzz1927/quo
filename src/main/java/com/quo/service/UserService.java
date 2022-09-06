@@ -22,7 +22,7 @@ public interface UserService {
 	boolean update(EmpDto ed);
 	
 	 //查询用户密码
-	Emp getPwdByEno(int eno);
+	EmpDto2 getPwdByEno(int eno);
 	//重置用户密码
 	 void changeEmpPwd(int eno) throws LoginException;
 	 //删除单个用户

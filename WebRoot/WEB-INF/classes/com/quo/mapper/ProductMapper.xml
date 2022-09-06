@@ -87,5 +87,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</foreach>
 	</insert>
 
-
+      <!-- author:韩宛廷，产品导出 -->
+      <select id="getByPids" resultType="productExport">
+           select p.pid,p.pname,pt.tname,ps.psname,p.price,p.stock,p.connection,p.pInterface,p.noise,p.bass,
+	  		p.waterproof,p.mic,p.packageInfo from product p left join productseries ps on p.psid=ps.psid 
+	  		left join producttype pt on ps.tid=pt.tid where pid in "
+		<foreach collection="array" item="pid" separator="," open="(" close=")">
+		#{pid}
+		</foreach>
+	</select>
 </mapper>

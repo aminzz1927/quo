@@ -232,9 +232,7 @@ public class ProductController {
  * @param response
  */          
 		    @RequestMapping(value="/product-export",method = RequestMethod.POST)
-		    public void ProductExport(HttpServletRequest request, HttpServletResponse response) {
-		    	String []pidstr = request.getParameterValues("pid");
-		    	int[] pids =  Arrays.stream(pidstr).mapToInt(Integer::parseInt).toArray();
+		    public Result ProductExport(@RequestBody int[] pids, HttpServletRequest request, HttpServletResponse response) {
 		    	String[] arrays= new String[]{"产品编号","产品名称","产品类型名称","产品系列名称","价格","库存","耳机连接方式","耳机接口","降噪","重低音","防水功能","麦克风","包装清单"};
 				 response.setContentType("application/vnd.ms-excel"); 
 				response.setHeader("Content-disposition", "attachment;filename=Product-"+System.currentTimeMillis()+".xlsx");
@@ -248,6 +246,7 @@ public class ProductController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				return new Result(ResultCode.SUCCESS);
 		    	
 		    }
 		    

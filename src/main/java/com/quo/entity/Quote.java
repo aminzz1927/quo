@@ -14,21 +14,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Quote {
 	
-	private Long qid;
+	private Long qid;					//报价单编号
 	
-	private String qdate;
+	private String qdate;				//报价日期
 	
-	private String abst;
+	private String abst;				//概要
 	
-	private String payment;
+	private String payment;				//付款方式
 	
-	private String expiry;
+	private String expiry;				//有效期限
 	
-	private String edd;
+	private String edd;					//预计发货时间
 	
-	private Long cid;
+	private Long cid;					//客户编号
 	
-	private Long pid;
+	private Long pid;					//产品编号
 	
 	
 	

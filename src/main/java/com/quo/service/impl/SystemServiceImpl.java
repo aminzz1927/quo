@@ -3,9 +3,11 @@ package com.quo.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.quo.dto.EmpDto;
 import com.quo.dto.MenuDto;
 import com.quo.entity.Emp;
 import com.quo.entity.SystemSettings;
+import com.quo.mapper.EmpMapper;
 import com.quo.mapper.SystemMapper;
 import com.quo.service.SystemService;
 
@@ -18,6 +20,9 @@ import com.quo.service.SystemService;
 public class SystemServiceImpl implements SystemService {
 	@Autowired
 	public SystemMapper systemMapper;
+	
+	@Autowired
+	public EmpMapper eMapper;
 	
 
 	//获取审核金额
@@ -37,18 +42,27 @@ public class SystemServiceImpl implements SystemService {
 
 
 	//获取登录信息及权限
-	@Override
+	/*@Override
 	public MenuDto getMenuDto(int eno) {
 		// TODO Auto-generated method stub
 		return systemMapper.getMenuDto(eno);
-	}
+	}*/
 
 
 	@Override
 	public Emp ifExists(int eno, String pwd) {
 		// TODO Auto-generated method stub
-		return systemMapper.ifExists(eno,pwd);
+		return eMapper.getByEnoAndPwd(eno,pwd);
 	}
+
+
+	@Override
+	public EmpDto getEmpDtoByEno(int eno) {
+		// TODO Auto-generated method stub
+		return systemMapper.getEmpDtoByEno(eno);
+	}
+
+
 
 
 

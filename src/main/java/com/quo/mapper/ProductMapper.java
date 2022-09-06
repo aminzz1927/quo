@@ -2,6 +2,7 @@ package com.quo.mapper;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -16,8 +17,6 @@ import com.quo.entity.ProductExport;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
-import com.wkcto.crm.workbench.dao.String;
-import com.wkcto.crm.workbench.domain.Activity;
 
 @Repository
 public interface ProductMapper {

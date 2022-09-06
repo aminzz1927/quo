@@ -4,11 +4,10 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.quo.controller.HttpServletRequest;
-import com.quo.controller.HttpServletResponse;
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
@@ -19,9 +18,7 @@ import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
 import com.quo.mapper.ProductMapper;
 import com.quo.service.ProductService;
-import com.wkcto.crm.workbench.domain.Activity;
-import com.wkcto.crm.workbench.service.impl.Override;
-import com.wkcto.crm.workbench.service.impl.String;
+
 /** 
 
 * @author zhoumin

@@ -18,6 +18,8 @@ import org.json.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quo.entity.Emp;
 import com.quo.exceptions.LoginException;
@@ -34,11 +36,11 @@ import com.quo.utils.TransactionHandler;
  * @author 韩宛廷
  *
  */
-public class LoginController extends HttpServlet {
+@Controller("loginController")
+@RequestMapping(value="/api")
+public class LoginController{
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void login(HttpServletRequest request, HttpServletResponse response) {
 		String jojStr = JsonUtil.getBody(request);
 		System.out.println(jojStr);
 		JSONObject joj = new JSONObject(jojStr);          

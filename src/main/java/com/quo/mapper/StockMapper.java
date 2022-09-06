@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.quo.dto.StockInfoDto;
+import com.quo.entity.StockRecord;
 
 /** 
 
@@ -20,5 +21,7 @@ public interface StockMapper {
 			+ "p.psid=ps.psid left join producttype pt on ps.tid=pt.tid left join action a on sr.atid=a.atid "
 			+ "left join emp e on sr.heno=e.eno")
 	List<StockInfoDto> getStockInfoList();
+
+	boolean addStockRecord(StockRecord stockRecord);
 
 }

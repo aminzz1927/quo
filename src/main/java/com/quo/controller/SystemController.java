@@ -88,16 +88,15 @@ public class SystemController {
 		    }			  	          
 		  }	  		
 		  
-		  Emp empIsLogin = systemService.ifExists(eno,pwd);	  
-		  EmpDto emp2 = systemService.getEmpDtoByEno(empIsLogin.getEno());
-		  List<Integer> mids = authorityService.findListByRoleId(empIsLogin.getRid());
+		  Emp emp = systemService.ifExists(eno,pwd);	  
+		  EmpDto emp2 = systemService.getEmpDtoByEno(emp.getEno());
+		  List<Integer> mids = authorityService.findListByRoleId(emp.getRid());
 		  
 		  menuDto.setEmpDto(emp2);
 		  menuDto.setMids(mids);	
-		  
-		  request.getSession().setAttribute("empIsLogin", empIsLogin);
+		  request.getSession().setAttribute("emp", emp);
 		  request.getSession().setAttribute("permissions", mids);
-		  
+		  System.out.println("AAAAAAAAAAA"+emp);
 		  Result result=new Result(ResultCode.SUCCESS);
 		  result.setData(menuDto); 
 		  	  return result;

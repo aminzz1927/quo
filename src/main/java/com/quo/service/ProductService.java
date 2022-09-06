@@ -40,4 +40,6 @@ public interface ProductService {
 	boolean saves(List<Product2> productList);
 	//产品导出
 	List<ProductExport> getByPids(int[] pids);
+
+	Product getProductByPid(Long pid);
 }

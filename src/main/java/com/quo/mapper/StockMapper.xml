@@ -5,7 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- namespace 命名空间 -->
 <mapper namespace="com.quo.mapper.StockMapper">
 
+	<insert id="addStockRecord" parameterType="stockRecord">
+	insert into stockrecord(pid,atid,preStock,quantity,afStock,heno,hdate) 
+	values(#{pid},#{atid},#{preStock},#{quantity},#{afStock},#{heno},#{hdate})
 	
+	</insert>
 
 	
 

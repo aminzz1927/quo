@@ -51,5 +51,12 @@ public interface ProductMapper {
 	
 	//产品导出
 	List<ProductExport> getByPids(int[] pids);
+	
+	@Select("select * from product where pid=#{pid}")
+	Product getProductByPid(Long pid);
+
+	//更新库存数量
+	@Update("update product set stock=#{stock} where pid=#{pid}")
+	boolean updateStock(@Param("pid")Long pid, @Param("stock") Integer stock);
 
 }

@@ -83,7 +83,7 @@ public class StockController {
 		  System.out.println("preStock"+preStock+"stock"+stock);
 		  		  
 		  Emp emp = (Emp) session.getAttribute("emp");	
-		  	  
+		  System.out.println("emp"+emp);	  
 		  StockRecord stockRecord = new StockRecord();
 		  stockRecord.setPid(pid);
 		  stockRecord.setAtid(2);
@@ -113,7 +113,7 @@ public class StockController {
 		  System.out.println("preStock"+preStock+"stock"+stock);
 		  		  
 		  Emp emp = (Emp) session.getAttribute("emp");	
-
+		  System.out.println("emp"+emp);
 		  StockRecord stockRecord = new StockRecord();
 		  stockRecord.setPid(pid);
 		  stockRecord.setAtid(2);

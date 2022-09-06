@@ -49,7 +49,7 @@ import com.quo.utils.ResultCode;
 public class ProductController {
 
 	@Autowired
-	public ProductService pService;
+	public ProductService pService;  
 	
 	@Autowired
 	public QuoteService qService;

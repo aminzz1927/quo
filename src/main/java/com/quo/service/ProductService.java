@@ -2,7 +2,7 @@ package com.quo.service;
 
 import java.util.List;
 
-
+import org.apache.ibatis.annotations.Param;
 
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
@@ -41,4 +41,8 @@ public interface ProductService {
 	List<ProductExport> getByPids(int[] pids);
 
 	Product getProductByPid(Long pid);
+
+	boolean updateStock(Long pid, Integer stock);
+	
 }
+

@@ -111,6 +111,19 @@ public class ProductServiceImpl implements ProductService{
 		return 	pMapper.getByPids(pids);
 			
 	}
+
+	//获取产品
+		@Override
+		public Product getProductByPid(Long pid) {
+			// TODO Auto-generated method stub
+			return pMapper.getProductByPid(pid);
+		}
+		
+		@Override
+		public boolean updateStock(Long pid, Integer stock) {
+			// TODO Auto-generated method stub
+			return pMapper.updateStock(pid, stock);
+		}
 	}
 
 

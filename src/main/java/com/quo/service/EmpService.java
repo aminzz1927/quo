@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.quo.entity.Emp;
+import com.quo.entity.EmpLogin;
 import com.quo.exceptions.LoginException;
 
 /**
@@ -13,7 +14,7 @@ import com.quo.exceptions.LoginException;
  */
 public interface EmpService {
 
-	Emp login(int eno, String pwd) throws LoginException;
+	EmpLogin login(int eno, String pwd) throws LoginException;
 
 	
 

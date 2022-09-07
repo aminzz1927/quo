@@ -30,7 +30,7 @@ public class Quote {
 	
 	private Long pid;					//产品编号
 	
-	
+	private Integer qsid;			//报价单状态
 	
 	
 

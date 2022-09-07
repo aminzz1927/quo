@@ -39,8 +39,7 @@ public class StockController {
 	    
 	    @Autowired
 	    public StockService stockService;
-
-		
+	
 	
 	  //在库一览					
 	  @RequestMapping(value="/stock-list",method=RequestMethod.GET)

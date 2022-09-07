@@ -22,7 +22,8 @@ public class ExcelWriter<T> {
 	 * @param clazz 类型
 	 * @return 工作簿
 	 */
-	public XSSFWorkbook getWorkbook(List<T> dataList , String sheetName , Class clazz, String[] arrays) {
+	public XSSFWorkbook getWorkbook(List<T> dataList , String sheetName , Class clazz) {
+		System.out.println("11111111111111111111111111111111111");
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		XSSFSheet sheet = workbook.createSheet(sheetName); 
 		XSSFRow row0 = sheet.createRow(0);
@@ -33,6 +34,8 @@ public class ExcelWriter<T> {
 			XSSFCell cell = row0.createCell(i);
 			cell.setCellValue(fieldName);
 		}
+		
+		System.out.println("11111111111111111111111111111111111");
 		
 		try {
 			for (int i = 0; i < dataList.size(); i++) {
@@ -58,6 +61,8 @@ public class ExcelWriter<T> {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
+		System.out.println("11111111111111111111111111111111111");
+		
 		return workbook;
 	}
 }

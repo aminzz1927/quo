@@ -234,14 +234,16 @@ public class ProductController {
  * @param response
  */          
 		    @RequestMapping(value="/product-export",method = RequestMethod.POST)
-		    public Result ProductExport(@RequestBody int[] pids, HttpServletRequest request, HttpServletResponse response) {
-		    	String[] arrays= new String[]{"产品编号","产品名称","产品类型名称","产品系列名称","价格","库存","耳机连接方式","耳机接口","降噪","重低音","防水功能","麦克风","包装清单"};
+		    public Result ProductExport(@RequestBody Long[] pids, HttpServletRequest request, HttpServletResponse response) {
+		    	//String[] arrays= new String[]{"产品编号","产品名称","产品类型名称","产品系列名称","价格","库存","耳机连接方式","耳机接口","降噪","重低音","防水功能","麦克风","包装清单"};
+		 
 				 response.setContentType("application/vnd.ms-excel"); 
 				response.setHeader("Content-disposition", "attachment;filename=Product-"+System.currentTimeMillis()+".xlsx");
 				List<ProductExport> proList =	pService.getByPids(pids);
-			
+		        System.out.println(proList);
 				ExcelWriter<ProductExport> ew = new ExcelWriter<>();
-				XSSFWorkbook workbook = ew.getWorkbook(proList, "产品信息", ProductExport.class, arrays);
+				XSSFWorkbook workbook = ew.getWorkbook(proList, "产品信息", ProductExport.class);
+		
 				try {
 					workbook.write(response.getOutputStream());
 				} catch (IOException e) {

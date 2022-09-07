@@ -2,6 +2,9 @@ package com.quo.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.quo.dto.ProductDto;
@@ -38,7 +41,7 @@ public interface ProductService {
 
 	boolean saves(List<Product2> productList);
 	//产品导出
-	List<ProductExport> getByPids(int[] pids);
+	List<ProductExport> getByPids(Long[] pids);
 
 	Product getProductByPid(Long pid);
 

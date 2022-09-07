@@ -1,7 +1,6 @@
 package com.quo.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -13,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * Servlet implementation class IndexController2
+ */
 @WebServlet({"/login", "/resetpw", "/home", "/system/*","/product/list","/product/listse"})
 public class IndexController extends HttpServlet {
 	
@@ -30,11 +31,10 @@ PrintWriter out = response.getWriter();
 out.println(content);
 out.close();
 
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

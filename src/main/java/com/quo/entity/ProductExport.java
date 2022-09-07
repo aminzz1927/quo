@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
  *
  */
 @Data
-@NoArgsConstructor
 public class ProductExport {
 	
 	private Long pid;						//产品编号

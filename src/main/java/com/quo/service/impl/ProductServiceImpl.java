@@ -2,8 +2,8 @@ package com.quo.service.impl;
 
 import java.util.List;
 
-
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -106,7 +106,7 @@ public class ProductServiceImpl implements ProductService{
  * author:韩宛廷,产品导出
  */
 	@Override
-	public List<ProductExport> getByPids(int[] pids) {
+	public List<ProductExport> getByPids(Long[] pids) {
 		
 		return 	pMapper.getByPids(pids);
 			

@@ -1,6 +1,7 @@
  package com.quo.controller;
 
 import java.io.IOException;
+
 import java.io.OutputStream;
 import java.util.ArrayList;
 
@@ -36,8 +37,10 @@ import com.quo.entity.Quote;
 import com.quo.service.ProductService;
 import com.quo.service.QuoteService;
 import com.quo.utils.ExcelWriter;
+import com.quo.utils.ProductExcelExporter;
 import com.quo.utils.Result;
 import com.quo.utils.ResultCode;
+
 
 
 /** 
@@ -234,17 +237,18 @@ public class ProductController {
  * 产品导出
  * @param request
  * @param response
+ * @throws IOException 
  */          
 		    @RequestMapping(value="/product-export",method = RequestMethod.POST)
 		    public void ProductExport(@RequestBody Long[] pids, HttpServletRequest request, HttpServletResponse response) {
-		    	//String[] arrays= new String[]{"产品编号","产品名称","产品类型名称","产品系列名称","价格","库存","耳机连接方式","耳机接口","降噪","重低音","防水功能","麦克风","包装清单"};
+		    	String[] arrays= {"产品编号","产品名称","产品类型名称","产品系列名称","价格","库存","耳机连接方式","耳机接口","降噪","重低音","防水功能","麦克风","包装清单"};
 		 
 				 response.setContentType("application/vnd.ms-excel"); 
 				response.setHeader("Content-disposition", "attachment;filename=Product-"+System.currentTimeMillis()+".xlsx");
 				List<ProductExport> proList =	pService.getByPids(pids);
 		        System.out.println(proList);
 				ExcelWriter<ProductExport> ew = new ExcelWriter<>();
-				XSSFWorkbook workbook = ew.getWorkbook(proList, "产品信息", ProductExport.class);
+				XSSFWorkbook workbook = ew.getWorkbook(proList, "产品信息", ProductExport.class,arrays);
 				ServletOutputStream outputStream = null;
 				try {
 					outputStream=response.getOutputStream();
@@ -268,5 +272,15 @@ public class ProductController {
 					}
 				}
 		    }
+		    
+		    
+//		    @RequestMapping(value="/product-export",method = RequestMethod.POST)
+//		    public void ProductExport(@RequestBody Long[] pids, HttpServletRequest request, HttpServletResponse response) throws IOException {
+//	    	 response.setContentType("application/octet-stream"); 
+//					response.setHeader("Content-disposition", "attachment;filename=Product-"+System.currentTimeMillis()+".xlsx");
+//					List<ProductExport> proList =	pService.getByPids(pids);
+//					ProductExcelExporter exporter = new ProductExcelExporter(proList);
+//					exporter.export(response);
+//		    }
 		    
 }

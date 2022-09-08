@@ -1,7 +1,7 @@
  package com.quo.controller;
 
 import java.io.IOException;
-
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import java.util.Arrays;
@@ -9,9 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -234,7 +236,7 @@ public class ProductController {
  * @param response
  */          
 		    @RequestMapping(value="/product-export",method = RequestMethod.POST)
-		    public Result ProductExport(@RequestBody Long[] pids, HttpServletRequest request, HttpServletResponse response) {
+		    public void ProductExport(@RequestBody Long[] pids, HttpServletRequest request, HttpServletResponse response) {
 		    	//String[] arrays= new String[]{"产品编号","产品名称","产品类型名称","产品系列名称","价格","库存","耳机连接方式","耳机接口","降噪","重低音","防水功能","麦克风","包装清单"};
 		 
 				 response.setContentType("application/vnd.ms-excel"); 
@@ -243,15 +245,28 @@ public class ProductController {
 		        System.out.println(proList);
 				ExcelWriter<ProductExport> ew = new ExcelWriter<>();
 				XSSFWorkbook workbook = ew.getWorkbook(proList, "产品信息", ProductExport.class);
-		
+				ServletOutputStream outputStream = null;
 				try {
-					workbook.write(response.getOutputStream());
+					outputStream=response.getOutputStream();
+					workbook.write(outputStream);
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}finally {
+					try {
+						workbook.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						outputStream.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-				return new Result(ResultCode.SUCCESS);
-		    	
 		    }
 		    
 }

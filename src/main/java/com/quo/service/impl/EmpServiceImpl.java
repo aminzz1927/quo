@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quo.entity.Emp;
+import com.quo.entity.EmpLogin;
 import com.quo.exceptions.LoginException;
 import com.quo.mapper.DeptMapper;
 import com.quo.mapper.EmpMapper;
@@ -21,18 +22,17 @@ import com.quo.utils.SqlSessionUtil;
  */
 @Service("empService")
 public class EmpServiceImpl implements EmpService {
-
-	private EmpMapper empDao = SqlSessionUtil.getCurrentSqlSession().getMapper(EmpMapper.class);
+	@Autowired
+	private EmpMapper emapper;
 	
-
 	@Override
-	public Emp login(int eno, String pwd) throws LoginException {
+	public EmpLogin login(int eno, String pwd) throws LoginException {
 		// 用户名和密码是否正确
-		Emp emp = empDao.getByEnoAndPwd(eno, pwd);
-		if(emp == null){
+		EmpLogin emplogin = emapper.getByEnoAndPwd(eno, pwd);
+		if(emplogin == null){
 			throw new LoginException("IDまたはパスワードが正しくありません。");
 		}
-		return emp;
+		return emplogin;
 	}
 
         
@@ -40,7 +40,7 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public void changePwd(Emp emp) throws LoginException{
-		if(empDao.changePwd(emp)<=0) {
+		if(emapper.changePwd(emp)<=0) {
 			throw new LoginException("密码更新失败");
 		}
 		

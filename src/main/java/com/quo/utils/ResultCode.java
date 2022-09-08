@@ -12,13 +12,14 @@ package com.quo.utils;
 public enum ResultCode {
 
     SUCCESS(true,10000,"操作成功！"),
+    NEWUSER(true,10001,"操作成功！"),
     //---系统错误返回码-----
-    FAIL(false,10001,"操作失败"),    
-    UNAUTHENTICATED(false,10002,"您还未登录"),
-    UNAUTHORISE(false,10003,"权限不足"),
-    NODEL(false,10004,"削除できません。"),
-    NOFIRSTUSER(false,10005,"已经是初始用户"),
-    NOLENGTH(false,10006,"字数超过啦"),
+    FAIL(false,20001,"操作失败"),    
+    UNAUTHENTICATED(false,20002,"您还未登录"),
+    UNAUTHORISE(false,20003,"权限不足"),
+    NODEL(false,20004,"削除できません。"),
+    NOFIRSTUSER(false,20005,"已经是初始用户"),
+    NOLENGTH(false,20006,"字数超过啦"),
     SERVER_ERROR(false,99999,"抱歉，系统繁忙，请稍后重试！");
 
     //---用户操作返回码  2xxxx----

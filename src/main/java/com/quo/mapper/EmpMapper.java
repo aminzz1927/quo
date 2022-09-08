@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.quo.entity.Emp;
+import com.quo.entity.EmpLogin;
 
 /**
  * 
@@ -21,7 +22,7 @@ public interface EmpMapper {
 
 	
     @Select("select * from emp where eno = #{arg0} and pwd = #{arg1}")
-	Emp getByEnoAndPwd(int eno, String pwd);
+	EmpLogin getByEnoAndPwd(int eno, String pwd);
 
 
 	@Update("update emp set pwd=#{pwd} where eno=#{eno}")

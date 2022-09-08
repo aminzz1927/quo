@@ -27,5 +27,13 @@ public interface EmpMapper {
 
 	@Update("update emp set pwd=#{pwd} where eno=#{eno}")
 	int changePwd(Emp emp);
+
+	/**
+	 * 
+	 * @author zhoumin
+	 *
+	 */
+	@Select("select * from emp where eno = #{arg0} and pwd = #{arg1}")
+	Emp getEmp(int eno, String pwd);
 	
 }

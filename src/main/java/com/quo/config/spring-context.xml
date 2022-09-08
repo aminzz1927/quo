@@ -33,7 +33,7 @@
 	<!-- 指定mybatis配置文件的位置 -->
 	<property name="configLocation" value="classpath:com/quo/config/SqlMapConfig.xml"></property>
 	    	<!-- 类型别名扫描包 -->
-	<property name="typeAliasesPackage" value="com.quo.entity"></property>
+	<property name="typeAliasesPackage" value="com.quo.*"></property>
 	
 	</bean>
 

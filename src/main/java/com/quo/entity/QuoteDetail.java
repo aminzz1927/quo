@@ -14,29 +14,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QuoteDetail {
 	
-	private Long qdid;
+	private Long qdid;           //报价单明细表id
 	
-	private Long qid;
+	private Long qid;		     //报价单表id
 	
-	private Long pid;
+	private Long pid;            //产品id
 	
-	private Double tax;
+	private Double tax;			 //税率
 	
-	private Double discount;
+	private Double discount;     //折扣
 	
-	private String payment;
+	private String payment;      //付款方式
 	
-	private Integer quantity;
+	private Integer quantity;    //数量
 	
-	private String pname;
+	private String pname;        //产品名称
 	
-	private String ptype;
+	private String ptype;        //产品类型
 	
-	private String pseries;
+	private String pseries;		 //产品系列
 	
-	private Double price;
+	private Double price;   	 //产品价格
 	
-	private String pstatus;
+	private String pstatus;      //产品状态
 	
 
 }

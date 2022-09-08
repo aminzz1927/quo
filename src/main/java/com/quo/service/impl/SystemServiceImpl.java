@@ -52,7 +52,7 @@ public class SystemServiceImpl implements SystemService {
 	@Override
 	public Emp ifExists(int eno, String pwd) {
 		// TODO Auto-generated method stub
-		return eMapper.getByEnoAndPwd(eno,pwd);
+		return eMapper.getEmp(eno,pwd);
 	}
 
 

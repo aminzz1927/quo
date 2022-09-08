@@ -2,11 +2,13 @@ package com.quo.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quo.entity.Emp;
 import com.quo.entity.EmpLogin;
+//import com.quo.entity.EmpLogin;
 import com.quo.exceptions.LoginException;
 import com.quo.mapper.DeptMapper;
 import com.quo.mapper.EmpMapper;

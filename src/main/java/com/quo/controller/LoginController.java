@@ -1,5 +1,4 @@
 package com.quo.controller;
-
 import java.io.BufferedReader;
 
 import java.io.IOException;
@@ -12,7 +11,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.json.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,7 +62,11 @@ public class LoginController {
 		try {
 			pwd = MD5.get(pwd);
 			eService.login(eno, pwd);
-
+			if (pwd.equals("670b14728ad9902aecba32e22fa4f6bd")) {
+				result = new Result(ResultCode.NEWUSER);
+			} else {
+				result = new Result(ResultCode.SUCCESS);
+			}
 			// 程序能执行到此处一定是登录成功了。
 			request.getSession().setAttribute(Const.SESSION_USER, emplogin); // 向session域当中绑定当前登录的用户。
 
@@ -91,11 +93,7 @@ public class LoginController {
 			response.addHeader("Set-Cookie", cookie1);
 			response.addHeader("Set-Cookie", cookie2);
 		}
-		if (pwd == "670b14728ad9902aecba32e22fa4f6bd") {
-			result = new Result(ResultCode.NEWUSER);
-		} else {
-			result = new Result(ResultCode.SUCCESS);
-		}
+	
 		return result;
 
 	}
@@ -128,12 +126,12 @@ public class LoginController {
 				result = new Result(ResultCode.SUCCESS);
 			} catch (LoginException e) {
 				e.printStackTrace();
-				result = new Result(ResultCode.FAIL);
+				return new Result(ResultCode.FAIL);
 			}
 		}
 		// 检查是否为新用户
 		if (pwd.equals("670b14728ad9902aecba32e22fa4f6bd")) {
-			result = new Result(ResultCode.NEWUSER);
+			result = new Result(ResultCode.FAIL);
 		} else {
 			result = new Result(ResultCode.SUCCESS);
 		}
@@ -159,6 +157,8 @@ public class LoginController {
 				}
 			}
 			eno = Integer.valueOf(enostr);
+		}else{
+			result = new Result(ResultCode.FAIL);
 		}
 
 		Emp emp = new Emp();

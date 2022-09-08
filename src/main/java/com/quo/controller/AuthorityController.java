@@ -42,7 +42,7 @@ import com.quo.utils.ResultCode;
 
 */
 @Controller("authorityController")
-@RequestMapping(value="/api")
+@RequestMapping(value="/api")            
 public class AuthorityController {
 	@Autowired
 	public AuthorityService authorityService;

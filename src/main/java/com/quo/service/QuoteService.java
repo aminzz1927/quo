@@ -12,6 +12,7 @@ import com.quo.dto.QuotesDto;
 
 public interface QuoteService {
 
+	//通过报价单获取产品id
 	Long[] getPidsByQuote();
 
 	//获取报价单列表

@@ -1,4 +1,5 @@
 package com.quo.controller;
+
 import java.io.BufferedReader;
 
 import java.io.IOException;
@@ -51,12 +52,20 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Result login(HttpServletRequest request, HttpServletResponse response, @RequestBody EmpLogin emplogin) {
+	public Result login(HttpServletRequest request, HttpServletResponse response, @RequestBody EmpLogin emplogin){
 
 		Result result = new Result();
 
 		// 调用service登录(获取的对象是代理对象)
-		int eno = emplogin.getEno();
+		int eno;
+		try {
+			String enostr = emplogin.getEno();
+			eno = Integer.parseInt(enostr);
+		} catch (NumberFormatException n) {
+			result = new Result(ResultCode.FAIL);
+			result.setMessage("IDまたはパスワードが正しくありません。");
+			return result;
+		}
 		String pwd = emplogin.getPwd();
 		String flag = emplogin.getFlag();
 		try {
@@ -93,7 +102,7 @@ public class LoginController {
 			response.addHeader("Set-Cookie", cookie1);
 			response.addHeader("Set-Cookie", cookie2);
 		}
-	
+
 		return result;
 
 	}
@@ -148,6 +157,7 @@ public class LoginController {
 		String enostr = "0";
 		int eno = 0;
 		String pwd = null;
+		
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if ("a".equals(cookie.getName())) {
@@ -156,24 +166,36 @@ public class LoginController {
 					pwd = cookie.getValue();
 				}
 			}
-			eno = Integer.valueOf(enostr);
-		}else{
-			result = new Result(ResultCode.FAIL);
+			
+			try {
+				eno = Integer.parseInt(enostr);
+			} catch (NumberFormatException n) {
+				result = new Result(ResultCode.FAIL);
+				result.setMessage("IDまたはパスワードが正しくありません。");
+				return result;
+			}
+		} else {
+			 return new Result(ResultCode.FAIL);
 		}
 
 		Emp emp = new Emp();
 		emp.setEno(eno);
-		emp.setPwd(MD5.get(newpwd));
+		emp.setPwd(newpwd);//MD5.get(newpwd));
 		if (eno != 0 && pwd != null) {
 			try {
-				eService.changePwd(emp);
-				request.getSession().setAttribute(Const.SESSION_USER, emp); // 向session域
-				result = new Result(ResultCode.SUCCESS);
+				//if 
+				//eService.login(eno, MD5.get(pwd));
+					eService.changePwd(emp);
+					request.getSession().setAttribute(Const.SESSION_USER, emp); // 向session域
+					result = new Result(ResultCode.SUCCESS);
+//				}else {
+//					result = new Result(ResultCode.FAIL);
+//				}
 			} catch (LoginException e) {
 				result = new Result(ResultCode.FAIL);
 				result.setMessage(e.getMessage());
+				return result;
 			}
-
 		} else {
 			result = new Result(ResultCode.FAIL);
 		}

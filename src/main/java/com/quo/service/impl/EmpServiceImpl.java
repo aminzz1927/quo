@@ -28,9 +28,9 @@ public class EmpServiceImpl implements EmpService {
 	private EmpMapper emapper;
 	
 	@Override
-	public EmpLogin login(int eno, String pwd) throws LoginException {
+	public EmpLogin login(int enoint, String pwd) throws LoginException {
 		// 用户名和密码是否正确
-		EmpLogin emplogin = emapper.getByEnoAndPwd(eno, pwd);
+		EmpLogin emplogin = emapper.getByEnoAndPwd(enoint, pwd);
 		if(emplogin == null){
 			throw new LoginException("IDまたはパスワードが正しくありません。");
 		}

@@ -1,0 +1,37 @@
+{
+    "success": true,
+    "code": 10000,
+    "message": "操作成功！",
+    "data": [
+        {
+            "psid": "8",
+            "psname": "Dシリーズ",
+            "tid": "2",
+            "notes": "大好き"
+        },
+        {
+            "psid": "2",
+            "psname": "Bシリーズ",
+            "tid": "1",
+            "notes": "大好き"
+        },
+        {
+            "psid": "9",
+            "psname": "Fシリーズ",
+            "tid": "1",
+            "notes": "大好き"
+        },
+        {
+            "psid": "10",
+            "psname": "Gシリーズ",
+            "tid": "3",
+            "notes": "大好き"
+        },
+        {
+            "psid": "1",
+            "psname": "Aシリーズ",
+            "tid": "1",
+            "notes": "大好き"
+        }
+    ]
+}

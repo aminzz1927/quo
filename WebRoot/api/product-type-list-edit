@@ -1,0 +1,19 @@
+{
+    "success": true,
+    "code": 10000,
+    "message": "操作成功！",
+    "data": [
+        {
+            "tid": 1,
+            "tname": "Bluetoothヘッドセット"
+        },
+        {
+            "tid": 2,
+            "tname": "スポーツイヤホン"
+        },
+        {
+            "tid": 3,
+            "tname": "有線イヤホン"
+        }
+    ]
+}

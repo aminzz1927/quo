@@ -1,0 +1,22 @@
+{
+    "success": true,
+    "code": 10000,
+    "message": "操作成功！",
+    "data": {
+        "pid": 10000001,
+        "pname": "头戴耳机",
+        "tname": "Bluetoothヘッドセット",
+        "tid": 1,
+        "psname": "Aシリーズ",
+        "psid": 1,
+        "price": 399.0,
+        "stock": 100,
+        "connection": "蓝牙",
+        "noise": "なし",
+        "bass": "あり",
+        "waterproof": "ipx4",
+        "mic": "あり",
+        "packageInfo": "123",
+        "pinterface": "3.5mm"
+    }
+}

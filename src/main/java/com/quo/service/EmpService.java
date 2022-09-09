@@ -14,7 +14,7 @@ import com.quo.exceptions.LoginException;
  */
 public interface EmpService {
 
-	EmpLogin login(int eno, String pwd) throws LoginException;
+	EmpLogin login(int enoint, String pwd) throws LoginException;
 
 	
 

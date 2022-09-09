@@ -35,16 +35,16 @@ public class ExcelWriter<T> {
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		XSSFSheet sheet = workbook.createSheet(sheetName);
 		XSSFRow row0 = sheet.createRow(0);
-		CellStyle style = workbook.createCellStyle();
-		CellStyle styleCenter = workbook.createCellStyle();
-		XSSFFont font = workbook.createFont();
-		font.setBold(true);
-		font.setFontHeight(11);
-		font.setFontName("Microsoft Yahei");
-		style.setFont(font);
-		style.setAlignment(HorizontalAlignment.CENTER);
-		styleCenter.setFont(font);
-	    styleCenter.setAlignment(HorizontalAlignment.CENTER);
+		CellStyle Headstyle = workbook.createCellStyle();
+		CellStyle HeadStyleCenter = workbook.createCellStyle();
+		XSSFFont Headfont = workbook.createFont();
+		Headfont.setBold(true);
+		Headfont.setFontHeight(11);
+		Headfont.setFontName("Microsoft Yahei");
+		Headstyle.setFont(Headfont);
+		Headstyle.setAlignment(HorizontalAlignment.CENTER);
+		HeadStyleCenter.setFont(Headfont);
+		HeadStyleCenter.setAlignment(HorizontalAlignment.CENTER);
 //	    String cellWidth = "00000000000";
 //        for (int i=0; i<arrays.length; i++) {
 //        	createCell(row0, i, cellWidth, style);
@@ -53,7 +53,7 @@ public class ExcelWriter<T> {
 		for (int i = 0; i < arrays.length; i++) {
 			XSSFCell cell = row0.createCell(i);
 			cell.setCellValue(arrays[i]);
-			createCell(row0, i, arrays[i], style);
+			createCell(row0, i, arrays[i], Headstyle);
 		}
 
 		Field[] fields = clazz.getDeclaredFields(); // 获取所有字段
@@ -70,8 +70,29 @@ public class ExcelWriter<T> {
 							+ propertyName.substring(1);
 					Method getMethod = clazz.getDeclaredMethod(getMethodName);
 					Object value = getMethod.invoke(obj);
-					XSSFCell cell = row.createCell(j);
-					cell.setCellValue(value == null ? "" : value.toString());
+					String cellStr;
+					//XSSFCell cell = row.createCell(j);
+					if(value!=null) {
+						cellStr = value.toString();
+						//cell.setCellValue(value.toString());
+					}else {
+						cellStr = "";
+						//cell.setCellValue("");
+					}
+					CellStyle style = workbook.createCellStyle();
+					CellStyle styleCenter = workbook.createCellStyle();
+					XSSFFont font = workbook.createFont();
+					font.setBold(false);
+					font.setFontHeight(11);
+					style.setFont(font);
+					style.setAlignment(HorizontalAlignment.CENTER);
+					styleCenter.setFont(font);
+					styleCenter.setAlignment(HorizontalAlignment.CENTER);
+					createCell(row, j, cellStr, style);
+					//cell.setCellValue(value.toString());
+					//cell.setCellStyle(style);
+					// createCell(row, j, value.toString(), style);
+					//cell.setCellValue(value == null ? "" : value.toString());
 				}
 			}
 //			
@@ -116,6 +137,10 @@ public class ExcelWriter<T> {
 		return workbook;
 	}
 
+	
+
+
+
 	private void createCell(XSSFRow row0, int i, String value, CellStyle style) {
 		Cell cell = row0.createCell(i);
 		cell.setCellValue(value);
@@ -123,13 +148,13 @@ public class ExcelWriter<T> {
 		
 	}
 	
-//	private void createCell(Row row, int colIdx, double value, CellStyle style) {
+//	private void createCell(Row row, int colIdx, Object value, CellStyle style) {
 //		Cell cell = row.createCell(colIdx);
 //		cell.setCellValue(value);
 //		cell.setCellStyle(style);
 //	}
 //	
-//	private void createCell(Row row, int colIdx, String value, CellStyle style) {
+//	private void createCell(Row row, int colIdx, Object value, CellStyle style) {
 //		Cell cell = row.createCell(colIdx);
 //		cell.setCellValue(value);
 //		cell.setCellStyle(style);

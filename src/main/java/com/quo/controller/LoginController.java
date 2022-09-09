@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.quo.entity.Emp;
 import com.quo.entity.EmpLogin;
+import com.quo.entity.ResetNewPwd;
 import com.quo.exceptions.LoginException;
 import com.quo.service.EmpService;
 import com.quo.service.ProductService;
@@ -52,7 +53,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Result login(HttpServletRequest request, HttpServletResponse response, @RequestBody EmpLogin emplogin){
+	public Result login(HttpServletRequest request, HttpServletResponse response, @RequestBody EmpLogin emplogin) {
 
 		Result result = new Result();
 
@@ -134,8 +135,9 @@ public class LoginController {
 				request.getSession().setAttribute(Const.SESSION_USER, emplogin);
 				result = new Result(ResultCode.SUCCESS);
 			} catch (LoginException e) {
-				e.printStackTrace();
-				return new Result(ResultCode.FAIL);
+				result = new Result(ResultCode.FAIL);
+				result.setMessage("ログインしていません。");
+				return result;
 			}
 		}
 		// 检查是否为新用户
@@ -150,14 +152,16 @@ public class LoginController {
 
 	@RequestMapping(value = "/resetpw", method = RequestMethod.POST)
 	@ResponseBody
-	public Result resetpwd(HttpServletRequest request, HttpServletResponse response, @RequestBody String newpwd) {
+	public Result resetpwd(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody ResetNewPwd resetNewPwd) {
+		String newpwd = resetNewPwd.getNewpwd();
 		System.out.println(newpwd);
 		Result result = new Result();
 		Cookie[] cookies = request.getCookies(); // 请求没有Cookie的时候返回的不是一个长度为0的数组，而是null
 		String enostr = "0";
 		int eno = 0;
 		String pwd = null;
-		
+
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if ("a".equals(cookie.getName())) {
@@ -166,7 +170,7 @@ public class LoginController {
 					pwd = cookie.getValue();
 				}
 			}
-			
+
 			try {
 				eno = Integer.parseInt(enostr);
 			} catch (NumberFormatException n) {
@@ -175,19 +179,28 @@ public class LoginController {
 				return result;
 			}
 		} else {
-			 return new Result(ResultCode.FAIL);
+			result = new Result(ResultCode.FAIL);
+			result.setMessage("ログインしていません。");
+			return result;
 		}
 
 		Emp emp = new Emp();
 		emp.setEno(eno);
-		emp.setPwd(newpwd);//MD5.get(newpwd));
+		String PWD = MD5.get(newpwd);
+		emp.setPwd(PWD);
+		System.out.println(PWD);// MD5.get(newpwd));
 		if (eno != 0 && pwd != null) {
 			try {
-				//if 
-				//eService.login(eno, MD5.get(pwd));
-					eService.changePwd(emp);
-					request.getSession().setAttribute(Const.SESSION_USER, emp); // 向session域
-					result = new Result(ResultCode.SUCCESS);
+				// if
+				eService.login(eno, pwd);
+				if (!pwd.equals("670b14728ad9902aecba32e22fa4f6bd")) {
+					result = new Result(ResultCode.FAIL);
+					result.setMessage("你不是初始用户");
+					return result;
+				}
+				eService.changePwd(emp);
+				request.getSession().setAttribute(Const.SESSION_USER, emp); // 向session域
+				result = new Result(ResultCode.SUCCESS);
 //				}else {
 //					result = new Result(ResultCode.FAIL);
 //				}
@@ -198,6 +211,7 @@ public class LoginController {
 			}
 		} else {
 			result = new Result(ResultCode.FAIL);
+			result.setMessage("ログインしていません。");
 		}
 		return result;
 

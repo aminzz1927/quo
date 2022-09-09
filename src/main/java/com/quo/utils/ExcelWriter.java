@@ -3,6 +3,7 @@ package com.quo.utils;
 import java.lang.reflect.Field;
 
 
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.quo.entity.ProductExport;
+
 
 public class ExcelWriter<T> {
 
@@ -43,6 +45,11 @@ public class ExcelWriter<T> {
 		style.setAlignment(HorizontalAlignment.CENTER);
 		styleCenter.setFont(font);
 	    styleCenter.setAlignment(HorizontalAlignment.CENTER);
+//	    String cellWidth = "00000000000";
+//        for (int i=0; i<arrays.length; i++) {
+//        	createCell(row0, i, cellWidth, style);
+//        	sheet.autoSizeColumn(i);
+//        }
 		for (int i = 0; i < arrays.length; i++) {
 			XSSFCell cell = row0.createCell(i);
 			cell.setCellValue(arrays[i]);
@@ -55,6 +62,7 @@ public class ExcelWriter<T> {
 				
 				T obj = dataList.get(i);
 				XSSFRow row = sheet.createRow(i + 1);
+				
 				for (int j = 0; j < fields.length; j++) {
 					//createCell(row, colIdx++, String.format("%04d", p.getPid()), styleCenter);
 					String propertyName = fields[j].getName();
@@ -98,24 +106,32 @@ public class ExcelWriter<T> {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
+		
+		for (int i = 0; i < arrays.length; i++) {
+			sheet.autoSizeColumn(i);
+			int currentColumnWidth = sheet.getColumnWidth(i);
+			sheet.setColumnWidth(i, (currentColumnWidth + 500));
+		}
 
 		return workbook;
 	}
 
-	private void createCell(XSSFRow row0, int i, String string, CellStyle style) {
-		// TODO Auto-generated method stub
+	private void createCell(XSSFRow row0, int i, String value, CellStyle style) {
+		Cell cell = row0.createCell(i);
+		cell.setCellValue(value);
+		cell.setCellStyle(style);
 		
 	}
 	
-	private void createCell(Row row, int colIdx, double value, CellStyle style) {
-		Cell cell = row.createCell(colIdx);
-		cell.setCellValue(value);
-		cell.setCellStyle(style);
-	}
-	
-	private void createCell(Row row, int colIdx, String value, CellStyle style) {
-		Cell cell = row.createCell(colIdx);
-		cell.setCellValue(value);
-		cell.setCellStyle(style);
-	}
+//	private void createCell(Row row, int colIdx, double value, CellStyle style) {
+//		Cell cell = row.createCell(colIdx);
+//		cell.setCellValue(value);
+//		cell.setCellStyle(style);
+//	}
+//	
+//	private void createCell(Row row, int colIdx, String value, CellStyle style) {
+//		Cell cell = row.createCell(colIdx);
+//		cell.setCellValue(value);
+//		cell.setCellStyle(style);
+//	}
 }

@@ -1,6 +1,7 @@
  package com.quo.controller;
 
 import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -43,7 +44,6 @@ import com.quo.service.ProductService;
 import com.quo.service.QuoteService;
 import com.quo.utils.DownloadUtils;
 import com.quo.utils.ExcelWriter;
-import com.quo.utils.ProductExcelExporter;
 import com.quo.utils.Result;
 import com.quo.utils.ResultCode;
 
@@ -291,44 +291,44 @@ public class ProductController {
 //		    }
 		    
 
-		    @RequestMapping(value = "/products/template", method = RequestMethod.GET)
-		    public void download(HttpServletResponse response) throws Exception {
-		  
-		        //构造Excel
-		        //创建工作簿
-		        Workbook wb = new XSSFWorkbook();
-		        //构造sheet
-		        Sheet sheet = wb.createSheet();
-		        //创建行
-		        //标题
-		        String [] titles = "产品编号,产品名称,产品类型名称,产品系列名称,价格,库存,耳机连接方式,耳机接口,降噪,重低音,防水功能,麦克风,包装清单".split(",");
-		        //处理标题
-		
-		        Row row0 = sheet.createRow(0);
-		
-		        int titleIndex=0;
-		        for (String title : titles) {
-		            Cell cell = row0.createCell(titleIndex++);
-		            cell.setCellValue(title);
-		        }
-		
-		        String [] templates = "产品编号,产品名称,产品类型名称,产品系列名称,价格,库存,耳机连接方式,耳机接口,降噪,重低音,防水功能,麦克风,包装清单".split(",");
-		        //处理第二行
-		
-		        Row row1 = sheet.createRow(1);
-		
-		        int templateIndex=1;
-		        
-		        
-		        for (String template : templates) {
-		            Cell cell = row1.createCell(templateIndex++);
-		            cell.setCellValue(template);
-		        }
-		        
-		        //3.完成下载
-		        ByteArrayOutputStream os = new ByteArrayOutputStream();
-		        wb.write(os);
-		        new DownloadUtils().download(os,response,"人事报表.xlsx");
-		    }
+//		    @RequestMapping(value = "/products/template", method = RequestMethod.GET)
+//		    public void download(HttpServletResponse response) throws Exception {
+//		  
+//		        //构造Excel
+//		        //创建工作簿
+//		        Workbook wb = new XSSFWorkbook();
+//		        //构造sheet
+//		        Sheet sheet = wb.createSheet();
+//		        //创建行
+//		        //标题
+//		        String [] titles = "产品编号,产品名称,产品类型名称,产品系列名称,价格,库存,耳机连接方式,耳机接口,降噪,重低音,防水功能,麦克风,包装清单".split(",");
+//		        //处理标题
+//		
+//		        Row row0 = sheet.createRow(0);
+//		
+//		        int titleIndex=0;
+//		        for (String title : titles) {
+//		            Cell cell = row0.createCell(titleIndex++);
+//		            cell.setCellValue(title);
+//		        }
+//		
+//		        String [] templates = "产品编号,产品名称,产品类型名称,产品系列名称,价格,库存,耳机连接方式,耳机接口,降噪,重低音,防水功能,麦克风,包装清单".split(",");
+//		        //处理第二行
+//		
+//		        Row row1 = sheet.createRow(1);
+//		
+//		        int templateIndex=1;
+//		        
+//		        
+//		        for (String template : templates) {
+//		            Cell cell = row1.createCell(templateIndex++);
+//		            cell.setCellValue(template);
+//		        }
+//		        
+//		        //3.完成下载
+//		        ByteArrayOutputStream os = new ByteArrayOutputStream();
+//		        wb.write(os);
+//		        new DownloadUtils().download(os,response,"人事报表.xlsx");
+//		    }
 		    
 }

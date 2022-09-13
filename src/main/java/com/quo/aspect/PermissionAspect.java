@@ -41,7 +41,7 @@ public class PermissionAspect {
 	    
 		 
 
-	    @Around("execution(* com.quo.service.impl.*.*(..))")
+	    //@Around("execution(* com.quo.service.impl.*.*(..))")
 	    public void permissionCheck(ProceedingJoinPoint joinPoint,HttpSession session) throws Throwable {
 	       
 	            

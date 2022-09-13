@@ -18,9 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -291,44 +294,73 @@ public class ProductController {
 //		    }
 		    
 
-//		    @RequestMapping(value = "/products/template", method = RequestMethod.GET)
-//		    public void download(HttpServletResponse response) throws Exception {
-//		  
-//		        //构造Excel
-//		        //创建工作簿
-//		        Workbook wb = new XSSFWorkbook();
-//		        //构造sheet
-//		        Sheet sheet = wb.createSheet();
-//		        //创建行
-//		        //标题
-//		        String [] titles = "产品编号,产品名称,产品类型名称,产品系列名称,价格,库存,耳机连接方式,耳机接口,降噪,重低音,防水功能,麦克风,包装清单".split(",");
-//		        //处理标题
-//		
-//		        Row row0 = sheet.createRow(0);
-//		
-//		        int titleIndex=0;
+		    @RequestMapping(value = "/products/template", method = RequestMethod.GET)
+		    public void download(HttpServletResponse response) throws Exception {
+		  
+		        //构造Excel
+		        //创建工作簿
+		    	XSSFWorkbook wb = new XSSFWorkbook();
+		        //构造sheet
+		        Sheet sheet = wb.createSheet();
+		        
+		        CellStyle Headstyle = wb.createCellStyle();
+		        XSSFFont Headfont = wb.createFont();
+				Headfont.setBold(true);
+				Headfont.setFontHeight(11);
+				Headfont.setFontName("Microsoft Yahei");
+				Headstyle.setFont(Headfont);
+				Headstyle.setAlignment(HorizontalAlignment.CENTER);
+		        //标题
+		        String [] titles = "产品编号,产品名称,产品类型名称,产品系列名称,价格,库存,耳机连接方式,耳机接口,降噪,重低音,防水功能,麦克风,包装清单".split(",");
+		        //处理标题
+		        //创建行
+		        Row row0 = sheet.createRow(0);
+		
+		        int titleIndex=0;
+		        for (int i = 0; i < titles.length; i++) {
+		        	Cell cell = row0.createCell(titleIndex++);
+		            cell.setCellValue(i);
+					sheet.autoSizeColumn(i);
+					int currentColumnWidth = sheet.getColumnWidth(i);
+					sheet.setColumnWidth(i, (currentColumnWidth + 500));
+					cell.setCellStyle(Headstyle);
+				}
 //		        for (String title : titles) {
-//		            Cell cell = row0.createCell(titleIndex++);
-//		            cell.setCellValue(title);
+//		            
 //		        }
-//		
-//		        String [] templates = "产品编号,产品名称,产品类型名称,产品系列名称,价格,库存,耳机连接方式,耳机接口,降噪,重低音,防水功能,麦克风,包装清单".split(",");
-//		        //处理第二行
-//		
-//		        Row row1 = sheet.createRow(1);
-//		
-//		        int templateIndex=1;
-//		        
-//		        
+		
+		        String [] templates = "产品编号,产品名称,产品类型名称,产品系列名称,价格,库存,耳机连接方式,耳机接口,降噪,重低音,防水功能,麦克风,包装清单".split(",");
+		        //处理第二行
+		    	CellStyle style = wb.createCellStyle();
+		    	XSSFFont font = wb.createFont();
+				font.setBold(false);
+				font.setFontHeight(11);
+				style.setFont(font);
+				style.setAlignment(HorizontalAlignment.CENTER);
+		        Row row1 = sheet.createRow(1);
+		
+		        int templateIndex=0;
+		        
+		        for (int j = 0; j < templates.length; j++) {
+		        	  Cell cell = row1.createCell(templateIndex++);
+			          cell.setCellValue(j);
+					sheet.autoSizeColumn(j);
+					int currentColumnWidth = sheet.getColumnWidth(j);
+					sheet.setColumnWidth(j, (currentColumnWidth + 500));
+					cell.setCellStyle(style);
+				}
 //		        for (String template : templates) {
 //		            Cell cell = row1.createCell(templateIndex++);
 //		            cell.setCellValue(template);
 //		        }
-//		        
-//		        //3.完成下载
-//		        ByteArrayOutputStream os = new ByteArrayOutputStream();
-//		        wb.write(os);
-//		        new DownloadUtils().download(os,response,"人事报表.xlsx");
-//		    }
+		        
+				
+
+		        
+		        //3.完成下载
+		        ByteArrayOutputStream os = new ByteArrayOutputStream();
+		        wb.write(os);
+		        new DownloadUtils().download(os,response,"产品表.xlsx");
+		    }
 		    
 }

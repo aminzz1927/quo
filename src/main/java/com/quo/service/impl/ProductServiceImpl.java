@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.quo.annotation.Permission;
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
@@ -37,21 +38,27 @@ public class ProductServiceImpl implements ProductService{
 			return pMapper.getProductList();
 		}*/
 
+	
 	@Override
+	@Permission(name = "product:view")
 	public List<ProductsDto> getProductList() {
 		// TODO Auto-generated method stub
 		return pMapper.getProductList();
 
 	}
 	
+	
 	@Override
+	@Permission(name = "product:view")
 	public ProductDto getProduct(Long pid) {
 		// TODO Auto-generated method stub
 		return pMapper.getProduct(pid);
 	}
 
 
+	
 	@Override
+	@Permission(name = "product:edit")
 	public boolean updateProduct(Product product) {
 		// TODO Auto-generated method stub
 		return pMapper.updateProduct(product);
@@ -72,6 +79,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 
+	@Permission(name = "product:delete")
 	@Override
 	public boolean deleteProduct(Long pid) {
 		// TODO Auto-generated method stub
@@ -86,7 +94,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 
+	
 	@Override
+	@Permission(name = "product:add")
 	public boolean addProduct(Product product) {
 		// TODO Auto-generated method stub
 		return pMapper.addProduct(product);

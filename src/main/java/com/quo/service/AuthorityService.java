@@ -17,5 +17,7 @@ public interface AuthorityService {
 
 	public boolean addAuthority(Authority authority);
 
+	public List<String> getPerms(Integer rid);
+
 	
 }

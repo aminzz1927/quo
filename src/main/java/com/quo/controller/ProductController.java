@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.quo.annotation.Permission;
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.*;
@@ -66,7 +67,7 @@ public class ProductController {
 
 	
 	     //获取所有产品信息		
-			
+			  @Permission(name = "product:view")
 			  @RequestMapping(value="/product",method=RequestMethod.GET)
 			  @ResponseBody 
 			  public Result getProductList(){ 
@@ -213,7 +214,8 @@ public class ProductController {
 		  }	
 
 		  //添加单个产品
-		  @RequestMapping(value="/product/add",method=RequestMethod.POST)
+		  @Permission(name = "product:add")
+		  @RequestMapping(value="/product",method=RequestMethod.POST)
 		  @ResponseBody
 		  public Result addProduct(@RequestBody Product product){ 
 

@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PermissionVerify {
-    String value();
+public @interface Permission {
+    //String value();
     String name() default "";
 }

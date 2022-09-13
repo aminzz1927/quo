@@ -20,4 +20,7 @@ public interface AuthorityMapper {
 
 	@Insert("insert into authority values(null,#{rid},#{mid})")
 	public boolean addAuthority(Authority authority);
+
+	@Select("select m.perms from menu m left join authority a on m.mid=a.mid where rid=#{rid}")
+	public List<String> getPerms(Integer rid);
 }

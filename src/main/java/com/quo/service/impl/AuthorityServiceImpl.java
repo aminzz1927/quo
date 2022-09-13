@@ -36,4 +36,10 @@ public class AuthorityServiceImpl implements AuthorityService{
 		return authorityMapper.addAuthority(authority);
 	}
 
+	@Override
+	public List<String> getPerms(Integer rid) {
+		// TODO Auto-generated method stub
+		return authorityMapper.getPerms(rid);
+	}
+
 }

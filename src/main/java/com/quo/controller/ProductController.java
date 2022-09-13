@@ -319,7 +319,7 @@ public class ProductController {
 		        int titleIndex=0;
 		        for (int i = 0; i < titles.length; i++) {
 		        	Cell cell = row0.createCell(titleIndex++);
-		            cell.setCellValue(i);
+		            cell.setCellValue(titles[i]);
 					sheet.autoSizeColumn(i);
 					int currentColumnWidth = sheet.getColumnWidth(i);
 					sheet.setColumnWidth(i, (currentColumnWidth + 500));
@@ -343,7 +343,7 @@ public class ProductController {
 		        
 		        for (int j = 0; j < templates.length; j++) {
 		        	  Cell cell = row1.createCell(templateIndex++);
-			          cell.setCellValue(j);
+			          cell.setCellValue(templates[j]);
 					sheet.autoSizeColumn(j);
 					int currentColumnWidth = sheet.getColumnWidth(j);
 					sheet.setColumnWidth(j, (currentColumnWidth + 500));

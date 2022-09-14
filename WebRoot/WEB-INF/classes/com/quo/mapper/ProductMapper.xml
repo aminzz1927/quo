@@ -74,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</insert>
 	
-	 <!-- author:韩宛廷，添加多个市场活动 -->
+	 <!-- author:韩宛廷，添加多个产品 -->
 	<!-- <insert id="saves" parameterType="product"> -->
 	<insert id="saves"  parameterType="product2">
 		insert into product 

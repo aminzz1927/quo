@@ -14,6 +14,7 @@ import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
 import com.quo.entity.Product2;
 import com.quo.entity.ProductExport;
+import com.quo.entity.ProductReport;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
@@ -107,7 +108,7 @@ public class ProductServiceImpl implements ProductService{
 	 * author:韩宛廷
 	 */
 	@Override
-	public boolean saves(List<Product2> productList) {
+	public boolean saves(List<ProductReport> productList) {
 		
 		return 	pMapper.saves(productList)==productList.size();
 			

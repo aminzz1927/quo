@@ -2,6 +2,7 @@ package com.quo.service;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,7 +11,6 @@ import org.apache.ibatis.annotations.Param;
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
-import com.quo.entity.Product2;
 import com.quo.entity.ProductExport;
 import com.quo.entity.ProductReport;
 import com.quo.entity.ProductSeries;

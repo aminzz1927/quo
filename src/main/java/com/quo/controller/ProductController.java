@@ -308,6 +308,7 @@ public class ProductController {
 		        //构造sheet
 		        Sheet sheet = wb.createSheet();
 		        
+		
 		        String [] templates = "产品编号,产品名称,产品类型名称,产品系列名称,价格,库存,耳机连接方式,耳机接口,降噪,重低音,防水功能,麦克风,包装清单".split(",");
 		        //处理第二行
 		    	CellStyle style = wb.createCellStyle();
@@ -321,8 +322,10 @@ public class ProductController {
 		        int templateIndex=0;
 		        
 		        for (int j = 0; j < templates.length; j++) {
+
 		        	  Cell cell = row0.createCell(templateIndex++);
-			          cell.setCellValue(j);
+			          cell.setCellValue(templates[j]);
+
 					sheet.autoSizeColumn(j);
 					int currentColumnWidth = sheet.getColumnWidth(j);
 					sheet.setColumnWidth(j, (currentColumnWidth + 500));

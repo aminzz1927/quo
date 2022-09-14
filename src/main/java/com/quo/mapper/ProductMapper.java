@@ -3,6 +3,7 @@ package com.quo.mapper;
 import java.util.List;
 
 
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.Product;
-import com.quo.entity.Product2;
 import com.quo.entity.ProductExport;
 import com.quo.entity.ProductReport;
 import com.quo.entity.ProductSeries;

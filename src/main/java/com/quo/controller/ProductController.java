@@ -13,9 +13,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
@@ -54,6 +58,16 @@ import com.quo.utils.ExcelImportUtil;
 import com.quo.utils.ExcelWriter;
 import com.quo.utils.Result;
 import com.quo.utils.ResultCode;
+import com.wkcto.crm.utils.ExcelReader;
+import com.wkcto.crm.utils.OutJson;
+import com.wkcto.crm.utils.TransactionHandler;
+import com.wkcto.crm.workbench.domain.Activity;
+import com.wkcto.crm.workbench.service.ActivityService;
+import com.wkcto.crm.workbench.service.impl.ActivityServiceImpl;
+import com.wkcto.crm.workbench.web.controller.Exception;
+import com.wkcto.crm.workbench.web.controller.File;
+import com.wkcto.crm.workbench.web.controller.ServletException;
+import com.wkcto.crm.workbench.web.controller.String;
 
 
 
@@ -367,34 +381,34 @@ public class ProductController {
 		    @RequestMapping(value="/products",method = RequestMethod.POST)
 		    @ResponseBody
 		    public Result importProducts(@RequestParam(name="file") MultipartFile file) throws Exception {
-		        //1.解析Excel
-		        //1.1.根据Excel文件创建工作簿
-		        Workbook wb = new XSSFWorkbook(file.getInputStream());
-		        //1.2.获取Sheet
-		        Sheet sheet = wb.getSheetAt(0);//参数：索引
-		        //1.3.获取Sheet中的每一行，和每一个单元格
-		        //2.获取用户数据列表
-		        List<ProductReport> list = new ArrayList<>();
-		        System.out.println(sheet.getLastRowNum());
-		        for (int rowNum =2; rowNum<= sheet.getLastRowNum() ;rowNum ++) {
-		            Row row = sheet.getRow(rowNum);//根据索引获取每一个行
-		            Object [] values = new Object[row.getLastCellNum()];
-		            for(int cellNum=0;cellNum< row.getLastCellNum(); cellNum ++) {
-		                Cell cell = row.getCell(cellNum);
-		                Object value = getCellValue(cell);
-		                values[cellNum] = value;
-		            }
-		            ProductReport pro2 = new ProductReport(values);
-		            list.add(pro2);
-		  
-		        }
-		        pService.saves(list);
-				return new Result(ResultCode.SUCCESS);
-
-//		        List<ProductReport> list = new ExcelImportUtil(ProductReport.class).readExcel(file.getInputStream(), 2, 0);
-//		        //3.批量保存用户
+//		        //1.解析Excel
+//		        //1.1.根据Excel文件创建工作簿
+//		        Workbook wb = new XSSFWorkbook(file.getInputStream());
+//		        //1.2.获取Sheet
+//		        Sheet sheet = wb.getSheetAt(0);//参数：索引
+//		        //1.3.获取Sheet中的每一行，和每一个单元格
+//		        //2.获取用户数据列表
+//		        List<ProductReport> list = new ArrayList<>();
+//		        System.out.println(sheet.getLastRowNum());
+//		        for (int rowNum =2; rowNum<= sheet.getLastRowNum() ;rowNum ++) {
+//		            Row row = sheet.getRow(rowNum);//根据索引获取每一个行
+//		            Object [] values = new Object[row.getLastCellNum()];
+//		            for(int cellNum=0;cellNum< row.getLastCellNum(); cellNum ++) {
+//		                Cell cell = row.getCell(cellNum);
+//		                Object value = getCellValue(cell);
+//		                values[cellNum] = value;
+//		            }
+//		            ProductReport pro2 = new ProductReport(values);
+//		            list.add(pro2);
+//		  
+//		        }
 //		        pService.saves(list);
-//		        return new Result(ResultCode.SUCCESS);
+//				return new Result(ResultCode.SUCCESS);
+
+		        List<ProductReport> list = new ExcelImportUtil(ProductReport.class).readExcel(file.getInputStream(), 2, 0);
+		        //3.批量保存用户
+		        pService.saves(list);
+		        return new Result(ResultCode.SUCCESS);
 		    }
 
 		    public static Object getCellValue(Cell cell) {
@@ -426,5 +440,8 @@ public class ProductController {
 		        }
 		        return value;
 		    }
-		    
+
+
 }
+		    
+

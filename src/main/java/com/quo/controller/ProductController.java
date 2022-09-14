@@ -100,6 +100,7 @@ public class ProductController {
 		  }
 		  
 		  //更新特定产品信息
+		  @Permission(name = "product:edit")
 		  @RequestMapping(value="/product/{pid}",method=RequestMethod.PUT)
 		  @ResponseBody
 		  public Result updateProduct(@PathVariable(value="pid") Long pid,@RequestBody Product product){ 
@@ -110,6 +111,7 @@ public class ProductController {
 		  }		  		  
 		  
 		  //获取产品类型列表(产品编辑)
+		
 		  @RequestMapping(value="/product-type-list-edit",method=RequestMethod.GET)		  
 		  @ResponseBody 
 		  public Result getTypeList(){ 
@@ -188,7 +190,7 @@ public class ProductController {
 				  
 				  }
 				  */
-		  
+		  @Permission(name = "product:delete")
 		  @RequestMapping(value="/product/{pid}",method=RequestMethod.DELETE)
 		  @ResponseBody
 		  public Result deleteProduct(@PathVariable(value="pid") Long pid){ 

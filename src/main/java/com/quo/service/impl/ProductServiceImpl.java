@@ -41,7 +41,6 @@ public class ProductServiceImpl implements ProductService{
 
 	
 	@Override
-	@Permission(name = "product:view")
 	public List<ProductsDto> getProductList() {
 		// TODO Auto-generated method stub
 		return pMapper.getProductList();
@@ -50,7 +49,6 @@ public class ProductServiceImpl implements ProductService{
 	
 	
 	@Override
-	@Permission(name = "product:view")
 	public ProductDto getProduct(Long pid) {
 		// TODO Auto-generated method stub
 		return pMapper.getProduct(pid);
@@ -59,7 +57,6 @@ public class ProductServiceImpl implements ProductService{
 
 	
 	@Override
-	@Permission(name = "product:edit")
 	public boolean updateProduct(Product product) {
 		// TODO Auto-generated method stub
 		return pMapper.updateProduct(product);
@@ -80,7 +77,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 
-	@Permission(name = "product:delete")
+	
 	@Override
 	public boolean deleteProduct(Long pid) {
 		// TODO Auto-generated method stub
@@ -97,7 +94,6 @@ public class ProductServiceImpl implements ProductService{
 
 	
 	@Override
-	@Permission(name = "product:add")
 	public boolean addProduct(Product product) {
 		// TODO Auto-generated method stub
 		return pMapper.addProduct(product);

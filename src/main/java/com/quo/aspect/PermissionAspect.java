@@ -40,11 +40,8 @@ public class PermissionAspect {
 
 	    @Autowired
 	    private AuthorityService authorityService;
-	    
-		 
 
-
-	     @Around("execution(* com.quo.controller.*.*(..))")      
+	     @Around("execution(* com.quo.controller.*.*(..))")          
 		 public Result permissionCheck(ProceedingJoinPoint joinPoint) {
 		 	
 		 System.out.println("checkSecurity");

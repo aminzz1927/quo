@@ -2,6 +2,7 @@
 
 import java.io.ByteArrayOutputStream;
 
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -42,7 +43,6 @@ import com.quo.annotation.Permission;
 import com.quo.dto.ProductDto;
 import com.quo.dto.ProductsDto;
 import com.quo.entity.*;
-import com.quo.entity.Product2;
 import com.quo.entity.ProductSeries;
 import com.quo.entity.ProductSeries2;
 import com.quo.entity.ProductType;
@@ -235,20 +235,7 @@ public class ProductController {
 		  
 		  }		  
 
-		  /**
-			  * 添加多个产品
-			  * author：韩宛廷
-			  * @param productList
-			  * @return
-			  */
-//		    @RequestMapping(value="/products",method = RequestMethod.POST)
-//		    @ResponseBody
-//		    public Result saves(@RequestBody List<Product2> productList )  {
-//		    	
-//		    	System.out.println(productList);
-//		    	pService.saves(productList);
-//		        return new Result(ResultCode.SUCCESS);
-//		    }
+
 /**
  * author:韩宛廷
  * 产品导出
@@ -364,14 +351,14 @@ public class ProductController {
 //		        for (String title : titles) {
 //		            
 //		        }
-		
-
+	
 		        
 		        //3.完成下载
 		        ByteArrayOutputStream os = new ByteArrayOutputStream();
 		        wb.write(os);
 		        new DownloadUtils().download(os,response,"产品表.xlsx");
 		    }
+		    
 		    
 		    /**
 		     * 导入Excel，添加产品
@@ -399,8 +386,9 @@ public class ProductController {
 		            }
 		            ProductReport pro2 = new ProductReport(values);
 		            list.add(pro2);
-		            pService.saves(list);
+		  
 		        }
+		        pService.saves(list);
 				return new Result(ResultCode.SUCCESS);
 
 //		        List<ProductReport> list = new ExcelImportUtil(ProductReport.class).readExcel(file.getInputStream(), 2, 0);

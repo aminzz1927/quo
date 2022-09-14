@@ -76,14 +76,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	 <!-- author:韩宛廷，添加多个产品 -->
 	<!-- <insert id="saves" parameterType="product"> -->
-	<insert id="saves"  parameterType="product2">
+	<insert id="saves"  parameterType="productReport">
 		insert into product 
-			(pname,psid,connection,pinterface,noise,
-		bass,waterproof,mic,price,packageInfo)
+			(pname,psid,price,connection,pinterface,noise,
+		bass,waterproof,mic,packageInfo)
        
 			<foreach collection="list" item="a" separator="union">
-			select #{a.pname},#{a.psid},#{a.connection},#{a.pinterface},#{a.noise},
-		#{a.bass},#{a.waterproof},#{a.mic},#{a.price},#{a.packageInfo} from dual  
+			select #{a.pname},#{a.psid},#{a.price},#{a.connection},#{a.pinterface},#{a.noise},
+		#{a.bass},#{a.waterproof},#{a.mic},#{a.packageInfo} from dual  
 			</foreach>
 	</insert>
 
